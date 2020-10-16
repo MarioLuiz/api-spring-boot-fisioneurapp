@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author Mario Arruda
  */
 @Repository
-public interface FisioterapeutaRepository extends JpaRepository<Fisioterapeuta, Integer>{
-    
+public interface FisioterapeutaRepository extends JpaRepository<Fisioterapeuta, Integer> {
+
 }
