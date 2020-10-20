@@ -10,6 +10,9 @@ import javax.persistence.Id;
 
 import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -17,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 public class Fisioterapeuta implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -36,7 +40,10 @@ public class Fisioterapeuta implements Serializable {
 
     private Integer tipo;
 
-    public Fisioterapeuta(Integer id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo) {
+    @ManyToMany(mappedBy = "fisioterapeutas")
+    private List<Paciente> pacientes = new ArrayList<>();
+
+    public Fisioterapeuta(Integer id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo, List<Paciente> pacientes) {
         this.id = id;
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
@@ -44,6 +51,10 @@ public class Fisioterapeuta implements Serializable {
         this.senha = senha;
         this.crefito = crefito;
         this.tipo = (tipo == null) ? null : tipo.getCod();
+        this.pacientes = pacientes;
+    }
+
+    public Fisioterapeuta() {
     }
 
     public Integer getId() {
@@ -100,6 +111,14 @@ public class Fisioterapeuta implements Serializable {
 
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
     @Override
