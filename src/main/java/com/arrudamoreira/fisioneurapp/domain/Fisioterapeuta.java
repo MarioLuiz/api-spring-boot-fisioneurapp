@@ -43,7 +43,7 @@ public class Fisioterapeuta implements Serializable {
     @ManyToMany(mappedBy = "fisioterapeutas")
     private List<Paciente> pacientes = new ArrayList<>();
 
-    public Fisioterapeuta(Integer id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo, List<Paciente> pacientes) {
+    public Fisioterapeuta(Integer id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo) {
         this.id = id;
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
@@ -51,7 +51,6 @@ public class Fisioterapeuta implements Serializable {
         this.senha = senha;
         this.crefito = crefito;
         this.tipo = (tipo == null) ? null : tipo.getCod();
-        this.pacientes = pacientes;
     }
 
     public Fisioterapeuta() {

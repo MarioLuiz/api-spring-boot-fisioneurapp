@@ -43,14 +43,17 @@ public class Paciente implements Serializable {
 
     private String telefone;
 
+    private String nome;
+
     public Paciente() {
     }
 
-    public Paciente(Integer id, Date dataCadastro, String cpf, String telefone) {
+    public Paciente(Integer id, Date dataCadastro, String cpf, String telefone, String nome) {
         this.id = id;
         this.dataCadastro = dataCadastro;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -91,6 +94,14 @@ public class Paciente implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
