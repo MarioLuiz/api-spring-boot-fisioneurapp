@@ -23,7 +23,7 @@ public class Prontuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private Integer numero;
 
@@ -40,7 +40,7 @@ public class Prontuario implements Serializable {
     public Prontuario() {
     }
 
-    public Prontuario(Integer id, Integer numero, String cid, Date dataCriacao, String resumo) {
+    public Prontuario(Long id, Integer numero, String cid, Date dataCriacao, String resumo) {
         this.id = id;
         this.numero = numero;
         this.cid = cid;
@@ -48,11 +48,11 @@ public class Prontuario implements Serializable {
         this.resumo = resumo;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

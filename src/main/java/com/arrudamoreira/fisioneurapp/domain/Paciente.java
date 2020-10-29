@@ -30,7 +30,7 @@ public class Paciente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @JsonIgnore
     @ManyToMany
@@ -59,7 +59,7 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(Integer id, Date dataCadastro, String cpf, String telefone, String nome) {
+    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome) {
         this.id = id;
         this.dataCadastro = dataCadastro;
         this.cpf = cpf;
@@ -67,11 +67,11 @@ public class Paciente implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

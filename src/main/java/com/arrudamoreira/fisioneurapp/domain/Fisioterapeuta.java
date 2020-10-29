@@ -20,12 +20,11 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Fisioterapeuta implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String nome;
 
@@ -43,7 +42,7 @@ public class Fisioterapeuta implements Serializable {
     @ManyToMany(mappedBy = "fisioterapeutas")
     private List<Paciente> pacientes = new ArrayList<>();
 
-    public Fisioterapeuta(Integer id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo) {
+    public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo) {
         this.id = id;
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
@@ -56,11 +55,11 @@ public class Fisioterapeuta implements Serializable {
     public Fisioterapeuta() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
