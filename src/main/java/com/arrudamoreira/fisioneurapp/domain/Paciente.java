@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -46,9 +48,13 @@ public class Paciente implements Serializable {
     private String telefone;
 
     private String nome;
-    
-    @OneToMany(mappedBy = "paciente", cascade=CascadeType.ALL)
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "prontuario_id", referencedColumnName = "id")
+    private Prontuario prontuario;
 
     public Paciente() {
     }
@@ -116,7 +122,15 @@ public class Paciente implements Serializable {
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
     }
-    
+
+    public Prontuario getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Prontuario prontuario) {
+        this.prontuario = prontuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
