@@ -17,7 +17,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -154,5 +153,10 @@ public class Paciente implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "fisioterapeutas=" + fisioterapeutas + ", dataCadastro=" + dataCadastro + ", cpf=" + cpf + ", telefone=" + telefone + ", nome=" + nome + ", enderecos=" + enderecos + ", prontuario=" + prontuario + '}';
     }
 }

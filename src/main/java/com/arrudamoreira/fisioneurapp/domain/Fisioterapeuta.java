@@ -143,4 +143,9 @@ public class Fisioterapeuta implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Fisioterapeuta{" + "nome=" + nome + ", cpfOuCnpj=" + cpfOuCnpj + ", email=" + email + ", crefito=" + crefito + ", tipo=" + tipo + '}';
+    }
 }

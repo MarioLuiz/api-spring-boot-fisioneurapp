@@ -1,10 +1,12 @@
 package com.arrudamoreira.fisioneurapp.services;
 
+import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
 import com.arrudamoreira.fisioneurapp.domain.Endereco;
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
+import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EnderecoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
@@ -39,6 +41,9 @@ public class DBService {
     @Autowired
     private ProntuarioRepository prontuarioRepository;
 
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
+
     public void intanciateTestDatabase() throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -60,6 +65,23 @@ public class DBService {
         Prontuario pront2 = new Prontuario(null, 853581, "G185", sdf.parse("01/07/2019 07:21"), "Paciente reclama de fortes dores na cabeça");
         Prontuario pront3 = new Prontuario(null, 218742, "G587", sdf.parse("21/06/2018 08:31"), "Paciente reclama de fortes dores na costas");
         Prontuario pront4 = new Prontuario(null, 128795, "H232", sdf.parse("17/07/2017 20:32"), "Paciente reclama de fortes dores na perna");
+
+        Avaliacao ava1 = new Avaliacao(null, sdf.parse("17/07/2017 20:32"), pac1.toString(),
+                "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
+                "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
+                "Dor nas costas", "Tratar a dor nas costas do paciente");
+        Avaliacao ava2 = new Avaliacao(null, sdf.parse("11/07/2019 07:42"), pac2.toString(),
+                "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
+                "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
+                "Dor nas costas", "Tratar a dor nas costas do paciente");
+        Avaliacao ava3 = new Avaliacao(null, sdf.parse("21/01/2020 21:35"), pac3.toString(),
+                "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
+                "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
+                "Dor nas costas", "Tratar a dor nas costas do paciente");
+        Avaliacao ava4 = new Avaliacao(null, sdf.parse("19/11/2019 18:22"), pac4.toString(),
+                "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
+                "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
+                "Dor nas costas", "Tratar a dor nas costas do paciente");
 
         fisio1.getPacientes().addAll(Arrays.asList(pac1, pac2));
         fisio2.getPacientes().addAll(Arrays.asList(pac3, pac4));
@@ -83,11 +105,21 @@ public class DBService {
         pront2.setPaciente(pac2);
         pront3.setPaciente(pac3);
         pront4.setPaciente(pac4);
+        
+        pront1.getAvaliacoes().add(ava1);
+        pront2.getAvaliacoes().add(ava2);
+        pront3.getAvaliacoes().add(ava3);
+        pront4.getAvaliacoes().add(ava4);
 
+        ava1.setProntuario(pront1);
+        ava2.setProntuario(pront2);
+        ava3.setProntuario(pront3);
+        ava4.setProntuario(pront4);
+        
         fisioterapeutaRepository.saveAll(Arrays.asList(fisio1, fisio2));
         pacienteRepository.saveAll(Arrays.asList(pac1, pac2, pac3, pac4));
         enderecoRepository.saveAll(Arrays.asList(ende1, ende2, ende3, ende4));
         prontuarioRepository.saveAll(Arrays.asList(pront1, pront2, pront3, pront4));
-
+        avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2, ava3, ava4));
     }
 }

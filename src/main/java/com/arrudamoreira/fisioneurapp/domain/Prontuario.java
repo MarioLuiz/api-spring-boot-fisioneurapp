@@ -2,14 +2,15 @@ package com.arrudamoreira.fisioneurapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -36,6 +37,10 @@ public class Prontuario implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "prontuario")
     private Paciente paciente;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "prontuario")
+    private List<Avaliacao> avaliacoes = new ArrayList<>();
 
     public Prontuario() {
     }
@@ -94,6 +99,14 @@ public class Prontuario implements Serializable {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 
     @Override
