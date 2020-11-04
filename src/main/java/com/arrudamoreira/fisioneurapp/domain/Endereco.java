@@ -1,6 +1,5 @@
 package com.arrudamoreira.fisioneurapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -29,7 +28,6 @@ public class Endereco implements Serializable {
     private String logradouro;
     
     private String bairro;
-    
     
     @ManyToOne
     @JoinColumn(name="paciente_id")
@@ -85,6 +83,14 @@ public class Endereco implements Serializable {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     @Override

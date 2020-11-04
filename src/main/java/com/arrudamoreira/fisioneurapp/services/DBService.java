@@ -2,12 +2,14 @@ package com.arrudamoreira.fisioneurapp.services;
 
 import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
 import com.arrudamoreira.fisioneurapp.domain.Endereco;
+import com.arrudamoreira.fisioneurapp.domain.EvolucaoClinica;
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
 import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EnderecoRepository;
+import com.arrudamoreira.fisioneurapp.repositories.EvolucaoClinicaRepository;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
 import com.arrudamoreira.fisioneurapp.repositories.ProntuarioRepository;
@@ -43,6 +45,9 @@ public class DBService {
 
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
+    
+    @Autowired
+    private EvolucaoClinicaRepository evolucaoClinicaRepository;
 
     public void intanciateTestDatabase() throws ParseException {
 
@@ -82,6 +87,11 @@ public class DBService {
                 "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
                 "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
                 "Dor nas costas", "Tratar a dor nas costas do paciente");
+        
+        EvolucaoClinica evo1 = new EvolucaoClinica(null, sdf.parse("11/07/2020 07:22"), "Conciente e disposto", "Foi realizado estimulo dos menbros inferiores e da lombar do paciente");
+        EvolucaoClinica evo2 = new EvolucaoClinica(null, sdf.parse("21/08/2020 13:14"), "Conciente e disposto", "Foi realizado estimulo dos menbros superiores e da pescoço do paciente");
+        EvolucaoClinica evo3 = new EvolucaoClinica(null, sdf.parse("15/09/2020 18:01"), "Conciente e disposto", "Foi realizado estimulo dos menbros inferiores e da ombros do paciente");
+        EvolucaoClinica evo4 = new EvolucaoClinica(null, sdf.parse("07/10/2020 15:18"), "Conciente e disposto", "Foi realizado estimulo dos menbros superiores e da costas do paciente");
 
         fisio1.getPacientes().addAll(Arrays.asList(pac1, pac2));
         fisio2.getPacientes().addAll(Arrays.asList(pac3, pac4));
@@ -95,6 +105,11 @@ public class DBService {
         pac2.getEnderecos().add(ende2);
         pac3.getEnderecos().add(ende3);
         pac4.getEnderecos().add(ende4);
+        
+        ende1.setPaciente(pac1);
+        ende2.setPaciente(pac2);
+        ende3.setPaciente(pac3);
+        ende4.setPaciente(pac4);
 
         pac1.setProntuario(pront1);
         pac2.setProntuario(pront2);
@@ -116,10 +131,21 @@ public class DBService {
         ava3.setProntuario(pront3);
         ava4.setProntuario(pront4);
         
+        pront1.getEvolucoesClinicas().add(evo1);
+        pront2.getEvolucoesClinicas().add(evo2);
+        pront3.getEvolucoesClinicas().add(evo3);
+        pront4.getEvolucoesClinicas().add(evo4);
+        
+        evo1.setProntuario(pront1);
+        evo2.setProntuario(pront2);
+        evo3.setProntuario(pront3);
+        evo4.setProntuario(pront4);
+        
         fisioterapeutaRepository.saveAll(Arrays.asList(fisio1, fisio2));
         pacienteRepository.saveAll(Arrays.asList(pac1, pac2, pac3, pac4));
         enderecoRepository.saveAll(Arrays.asList(ende1, ende2, ende3, ende4));
         prontuarioRepository.saveAll(Arrays.asList(pront1, pront2, pront3, pront4));
         avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2, ava3, ava4));
+        evolucaoClinicaRepository.saveAll(Arrays.asList(evo1,evo2,evo3,evo4));
     }
 }
