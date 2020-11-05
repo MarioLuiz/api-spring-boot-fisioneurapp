@@ -1,7 +1,7 @@
 package com.arrudamoreira.fisioneurapp.services;
 
-import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
-import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
+import com.arrudamoreira.fisioneurapp.domain.Encaminhamento;
+import com.arrudamoreira.fisioneurapp.repositories.EncaminhamentoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
  * @author Mario Arruda
  */
 @Service
-public class AvaliacaoService {
+public class EncaminhamentoService {
     
     @Autowired
-    private AvaliacaoRepository repo;
+    private EncaminhamentoRepository repo;
     
-    public List<Avaliacao> findAll() {
+    public List<Encaminhamento> findAll() {
         return repo.findAll();
     }
     
