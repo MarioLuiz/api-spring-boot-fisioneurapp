@@ -1,5 +1,6 @@
 package com.arrudamoreira.fisioneurapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -22,6 +23,7 @@ public class EvolucaoClinica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm")
     private Date data;
     
     private String estadoPaciente;
