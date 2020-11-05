@@ -1,6 +1,7 @@
 package com.arrudamoreira.fisioneurapp.services;
 
 import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
+import com.arrudamoreira.fisioneurapp.domain.Encaminhamento;
 import com.arrudamoreira.fisioneurapp.domain.Endereco;
 import com.arrudamoreira.fisioneurapp.domain.EvolucaoClinica;
 import com.arrudamoreira.fisioneurapp.domain.Exame;
@@ -9,6 +10,7 @@ import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
 import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
+import com.arrudamoreira.fisioneurapp.repositories.EncaminhamentoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EnderecoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EvolucaoClinicaRepository;
 import com.arrudamoreira.fisioneurapp.repositories.ExameRepository;
@@ -47,12 +49,15 @@ public class DBService {
 
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
-    
+
     @Autowired
     private EvolucaoClinicaRepository evolucaoClinicaRepository;
-    
+
     @Autowired
     private ExameRepository exameRepository;
+
+    @Autowired
+    private EncaminhamentoRepository encaminhamentoRepository;
 
     public void intanciateTestDatabase() throws ParseException {
 
@@ -75,11 +80,6 @@ public class DBService {
         Prontuario pront2 = new Prontuario(null, 853581, "G185", sdf.parse("01/07/2019 07:21"), "Paciente reclama de fortes dores na cabeça");
         Prontuario pront3 = new Prontuario(null, 218742, "G587", sdf.parse("21/06/2018 08:31"), "Paciente reclama de fortes dores na costas");
         Prontuario pront4 = new Prontuario(null, 128795, "H232", sdf.parse("17/07/2017 20:32"), "Paciente reclama de fortes dores na perna");
-        
-        Exame ex1 = new Exame(null, "Raio-x coluna", sdf.parse("21/08/2020 18:35"), "Exame em perfeitas condições", "C5 e C6 trincadas");
-        Exame ex2 = new Exame(null, "Raio-x cabeça", sdf.parse("30/10/2020 13:12"), "Exame em perfeitas condições", "Fratura na parte superior da cabeça");
-        Exame ex3 = new Exame(null, "Raio-x Tibia", sdf.parse("15/09/2020 15:37"), "Exame em perfeitas condições", "Osso trincado");
-        Exame ex4 = new Exame(null, "Raio-x Femour", sdf.parse("01/11/2020 09:11"), "Exame em perfeitas condições", "Osso com pequenas perfurações em toda parte frontal");
 
         Avaliacao ava1 = new Avaliacao(null, sdf.parse("17/07/2017 20:32"), pac1.toString(),
                 "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
@@ -97,11 +97,21 @@ public class DBService {
                 "Paciente sempre reclama de dores nas costas", "Pacente disse melhora na dorres nas costas",
                 "Bom, mas com desliexo do braço direito", "Avanacado, mas sem melhorias nos ultimos atendimentos",
                 "Dor nas costas", "Tratar a dor nas costas do paciente");
-        
+
         EvolucaoClinica evo1 = new EvolucaoClinica(null, sdf.parse("11/07/2020 07:22"), "Conciente e disposto", "Foi realizado estimulo dos menbros inferiores e da lombar do paciente");
         EvolucaoClinica evo2 = new EvolucaoClinica(null, sdf.parse("21/08/2020 13:14"), "Conciente e disposto", "Foi realizado estimulo dos menbros superiores e da pescoço do paciente");
         EvolucaoClinica evo3 = new EvolucaoClinica(null, sdf.parse("15/09/2020 18:01"), "Conciente e disposto", "Foi realizado estimulo dos menbros inferiores e da ombros do paciente");
         EvolucaoClinica evo4 = new EvolucaoClinica(null, sdf.parse("07/10/2020 15:18"), "Conciente e disposto", "Foi realizado estimulo dos menbros superiores e da costas do paciente");
+
+        Exame ex1 = new Exame(null, "Raio-x coluna", sdf.parse("21/08/2020 18:35"), "Exame em perfeitas condições", "C5 e C6 trincadas");
+        Exame ex2 = new Exame(null, "Raio-x cabeça", sdf.parse("30/10/2020 13:12"), "Exame em perfeitas condições", "Fratura na parte superior da cabeça");
+        Exame ex3 = new Exame(null, "Raio-x Tibia", sdf.parse("15/09/2020 15:37"), "Exame em perfeitas condições", "Osso trincado");
+        Exame ex4 = new Exame(null, "Raio-x Femour", sdf.parse("01/11/2020 09:11"), "Exame em perfeitas condições", "Osso com pequenas perfurações em toda parte frontal");
+
+        Encaminhamento ec1 = new Encaminhamento(null, "Neurofuncional", sdf.parse("01/11/2020 06:59"), "Encaminhado para especialista em Neuro");
+        Encaminhamento ec2 = new Encaminhamento(null, "Respiratória", sdf.parse("02/11/2020 07:31"), "Encaminhado para especialista em Fisio respiratória");
+        Encaminhamento ec3 = new Encaminhamento(null, "Traumato-Órtopedica", sdf.parse("03/11/2020 08:20"), "Encaminhado para especialista Ortopédista");
+        Encaminhamento ec4 = new Encaminhamento(null, "Oncológica", sdf.parse("04/11/2020 09:12"), "Encaminhado para especialista em Oncologia");
 
         fisio1.getPacientes().addAll(Arrays.asList(pac1, pac2));
         fisio2.getPacientes().addAll(Arrays.asList(pac3, pac4));
@@ -115,7 +125,7 @@ public class DBService {
         pac2.getEnderecos().add(ende2);
         pac3.getEnderecos().add(ende3);
         pac4.getEnderecos().add(ende4);
-        
+
         ende1.setPaciente(pac1);
         ende2.setPaciente(pac2);
         ende3.setPaciente(pac3);
@@ -130,7 +140,7 @@ public class DBService {
         pront2.setPaciente(pac2);
         pront3.setPaciente(pac3);
         pront4.setPaciente(pac4);
-        
+
         pront1.getAvaliacoes().add(ava1);
         pront2.getAvaliacoes().add(ava2);
         pront3.getAvaliacoes().add(ava3);
@@ -140,34 +150,45 @@ public class DBService {
         ava2.setProntuario(pront2);
         ava3.setProntuario(pront3);
         ava4.setProntuario(pront4);
-        
+
         pront1.getEvolucoesClinicas().add(evo1);
         pront2.getEvolucoesClinicas().add(evo2);
         pront3.getEvolucoesClinicas().add(evo3);
         pront4.getEvolucoesClinicas().add(evo4);
-        
+
         evo1.setProntuario(pront1);
         evo2.setProntuario(pront2);
         evo3.setProntuario(pront3);
         evo4.setProntuario(pront4);
-        
+
         pront1.getExames().add(ex1);
         pront2.getExames().add(ex2);
         pront3.getExames().add(ex3);
         pront4.getExames().add(ex4);
-        
+
         ex1.setProntuario(pront1);
         ex2.setProntuario(pront2);
         ex3.setProntuario(pront3);
         ex4.setProntuario(pront4);
-        
+
+        pront1.getEncaminhamentos().add(ec1);
+        pront2.getEncaminhamentos().add(ec2);
+        pront3.getEncaminhamentos().add(ec3);
+        pront4.getEncaminhamentos().add(ec4);
+
+        ec1.setProntuario(pront1);
+        ec2.setProntuario(pront2);
+        ec3.setProntuario(pront3);
+        ec4.setProntuario(pront4);
+
         fisioterapeutaRepository.saveAll(Arrays.asList(fisio1, fisio2));
         pacienteRepository.saveAll(Arrays.asList(pac1, pac2, pac3, pac4));
         enderecoRepository.saveAll(Arrays.asList(ende1, ende2, ende3, ende4));
         prontuarioRepository.saveAll(Arrays.asList(pront1, pront2, pront3, pront4));
         avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2, ava3, ava4));
-        evolucaoClinicaRepository.saveAll(Arrays.asList(evo1,evo2,evo3,evo4));
-        exameRepository.saveAll(Arrays.asList(ex1,ex2,ex3,ex4));
-        
+        evolucaoClinicaRepository.saveAll(Arrays.asList(evo1, evo2, evo3, evo4));
+        exameRepository.saveAll(Arrays.asList(ex1, ex2, ex3, ex4));
+        encaminhamentoRepository.saveAll(Arrays.asList(ec1, ec2, ec3, ec4));
+
     }
 }
