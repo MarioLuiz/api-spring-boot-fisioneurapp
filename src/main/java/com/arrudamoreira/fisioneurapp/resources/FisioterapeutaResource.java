@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,12 @@ public class FisioterapeutaResource {
     public ResponseEntity<List<Fisioterapeuta>> findAll() {
         List<Fisioterapeuta> listFisiotetapeutas = service.findAll();
         return ResponseEntity.ok(listFisiotetapeutas);
+    }
+    
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public ResponseEntity<Fisioterapeuta> find(@PathVariable Long id) {
+        Fisioterapeuta fisio = service.find(id);
+        return ResponseEntity.ok(fisio);
     }
     
     @RequestMapping(method = RequestMethod.POST)

@@ -38,7 +38,8 @@ public class Fisioterapeuta implements Serializable {
     private String crefito;
 
     private Integer tipo;
-
+    
+    @JsonIgnore
     @ManyToMany(mappedBy = "fisioterapeutas")
     private List<Paciente> pacientes = new ArrayList<>();
 
