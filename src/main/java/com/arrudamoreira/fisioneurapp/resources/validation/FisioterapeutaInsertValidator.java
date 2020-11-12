@@ -30,7 +30,7 @@ public class FisioterapeutaInsertValidator implements ConstraintValidator<Fisiot
 
         Fisioterapeuta aux = repo.findByEmail(objDto.getEmail());
         if (aux != null) {
-            list.add(new FieldMessage("email", "Email já  existe"));
+            list.add(new FieldMessage("email", "Email já existe"));
         }
 
         list.forEach(e -> {
