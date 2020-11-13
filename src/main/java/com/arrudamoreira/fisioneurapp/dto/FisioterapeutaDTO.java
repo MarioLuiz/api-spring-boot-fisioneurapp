@@ -8,37 +8,64 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author marioarruda
  */
-public class FisioterapeutaNewDTO implements Serializable{
+public class FisioterapeutaDTO implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
+    private Long id;
+
     @NotEmpty(message = "Preenchimento Obrigatório")
-    @Length(min = 5, max = 120, message = "O tamanho do nome deve ser entre 5 a 120 caracteres")
-    private String nome;
-    
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+    private String Nome;
+
     @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String cpfOuCnpj;
-    
+
     @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String email;
-    
+
     @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 8, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String senha;
-    
-    @NotEmpty(message = "Preenchimento Obrigatório")
+
     private String crefito;
-    
     @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+
+    @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String especialidade;
-    
-    public FisioterapeutaNewDTO(){
+
+    public FisioterapeutaDTO() {
+
+    }
+
+    public FisioterapeutaDTO(Long id, String Nome, String cpfOuCnpj, String email, String senha, String crefito, String especialidade) {
+        this.id = id;
+        this.Nome = Nome;
+        this.cpfOuCnpj = cpfOuCnpj;
+        this.email = email;
+        this.senha = senha;
+        this.crefito = crefito;
+        this.especialidade = especialidade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String Nome) {
+        this.Nome = Nome;
     }
 
     public String getCpfOuCnpj() {

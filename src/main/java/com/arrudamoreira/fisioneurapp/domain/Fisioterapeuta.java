@@ -37,20 +37,20 @@ public class Fisioterapeuta implements Serializable {
 
     private String crefito;
 
-    private Integer tipo;
+    private String especialidade;
     
     @JsonIgnore
     @ManyToMany(mappedBy = "fisioterapeutas")
     private List<Paciente> pacientes = new ArrayList<>();
 
-    public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, TipoPessoa tipo) {
+    public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, String especialidade) {
         this.id = id;
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
         this.email = email;
         this.senha = senha;
         this.crefito = crefito;
-        this.tipo = (tipo == null) ? null : tipo.getCod();
+        this.especialidade = especialidade;
     }
 
     public Fisioterapeuta() {
@@ -104,12 +104,12 @@ public class Fisioterapeuta implements Serializable {
         this.crefito = crefito;
     }
 
-    public Integer getTipo() {
-        return tipo;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 
     public List<Paciente> getPacientes() {
@@ -147,6 +147,6 @@ public class Fisioterapeuta implements Serializable {
 
     @Override
     public String toString() {
-        return "Fisioterapeuta{" + "nome=" + nome + ", cpfOuCnpj=" + cpfOuCnpj + ", email=" + email + ", crefito=" + crefito + ", tipo=" + tipo + '}';
+        return "Fisioterapeuta{" + "nome=" + nome + ", cpfOuCnpj=" + cpfOuCnpj + ", email=" + email + ", crefito=" + crefito + ", especialidade=" + especialidade + '}';
     }
 }

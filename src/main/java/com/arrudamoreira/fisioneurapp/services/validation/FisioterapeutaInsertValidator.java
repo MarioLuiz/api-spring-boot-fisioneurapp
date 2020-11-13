@@ -1,4 +1,4 @@
-package com.arrudamoreira.fisioneurapp.resources.validation;
+package com.arrudamoreira.fisioneurapp.services.validation;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;

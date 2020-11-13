@@ -1,7 +1,7 @@
 package com.arrudamoreira.fisioneurapp.services;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
-import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
@@ -37,7 +37,12 @@ public class FisioterapeutaService {
 
     public Fisioterapeuta fromDTO(FisioterapeutaNewDTO objDto) {
         return new Fisioterapeuta(null, objDto.getNome(), objDto.getCpfOuCnpj(),
-                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito(), TipoPessoa.toEnum(objDto.getTipo()));
+                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getEspecialidade());
+    }
+
+    public Fisioterapeuta fromDTO(FisioterapeutaDTO objDto) {
+        return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(),
+                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getEspecialidade());
     }
 
     @Transactional
@@ -45,6 +50,21 @@ public class FisioterapeutaService {
         obj.setId(null);
         obj = repo.save(obj);
         return obj;
+    }
+
+    public Fisioterapeuta update(Fisioterapeuta obj) {
+        Fisioterapeuta newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return repo.save(newObj);
+    }
+
+    private void updateData(Fisioterapeuta newObj, Fisioterapeuta obj) {
+        newObj.setNome(obj.getNome());
+        newObj.setCpfOuCnpj(obj.getCpfOuCnpj());
+        newObj.setEmail(obj.getEmail());
+        newObj.setSenha(obj.getSenha());
+        newObj.setCrefito(obj.getCrefito());
+        newObj.setEspecialidade(obj.getEspecialidade());
     }
 
 }

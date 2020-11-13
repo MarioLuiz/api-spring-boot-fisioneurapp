@@ -2,6 +2,7 @@ package com.arrudamoreira.fisioneurapp.resources;
 
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
 import com.arrudamoreira.fisioneurapp.services.FisioterapeutaService;
 import java.net.URI;
@@ -45,5 +46,13 @@ public class FisioterapeutaResource {
         fisio = service.insert(fisio);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(fisio.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+    
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@Valid @RequestBody FisioterapeutaDTO objDto, @PathVariable Long id) {
+        Fisioterapeuta fisio = service.fromDTO(objDto);
+        fisio.setId(id);
+        fisio = service.update(fisio);
+        return ResponseEntity.noContent().build();
     }
 }
