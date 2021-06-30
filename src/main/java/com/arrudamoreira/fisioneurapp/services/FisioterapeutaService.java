@@ -1,16 +1,21 @@
 package com.arrudamoreira.fisioneurapp.services;
 
-import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
-import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
-import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
-import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
-import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
+import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
+import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
+import com.arrudamoreira.fisioneurapp.security.UserSS;
+import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
+import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -30,6 +35,12 @@ public class FisioterapeutaService {
     }
 
     public Fisioterapeuta find(Long id) {
+    	
+    	UserSS user = UserService.authenticated();
+    	if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !id.equals(user.getId())) {
+    		throw new AuthorizationException("Acesso negado");
+    	}
+    	
         Optional<Fisioterapeuta> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Fisioterapeuta.class.getName()));
