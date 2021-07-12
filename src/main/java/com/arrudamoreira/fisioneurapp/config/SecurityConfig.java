@@ -43,7 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// "/fisioterapeutas/**"
 	};
 
-	private static final String[] PUBLIC_MATCHERS_POST = { "/fisioterapeutas/**" };
+	private static final String[] PUBLIC_MATCHERS_POST = { 
+			"/fisioterapeutas/**", 
+			"/auth/forgot/**" 
+	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
