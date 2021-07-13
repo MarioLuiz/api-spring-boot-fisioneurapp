@@ -34,10 +34,6 @@ public class FisioterapeutaDTO implements Serializable {
     @NotEmpty(message = "Preenchimento Obrigatório")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
 
-    @NotEmpty(message = "Preenchimento Obrigatório")
-    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
-    private String especialidade;
-
     public FisioterapeutaDTO() {
 
     }
@@ -49,7 +45,6 @@ public class FisioterapeutaDTO implements Serializable {
         this.email = email;
         this.senha = senha;
         this.crefito = crefito;
-        this.especialidade = especialidade;
     }
 
     public Long getId() {
@@ -100,11 +95,4 @@ public class FisioterapeutaDTO implements Serializable {
         this.crefito = crefito;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
 }

@@ -48,12 +48,12 @@ public class FisioterapeutaService {
 
     public Fisioterapeuta fromDTO(FisioterapeutaNewDTO objDto) {
         return new Fisioterapeuta(null, objDto.getNome(), objDto.getCpfOuCnpj(),
-                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getEspecialidade());
+                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito());
     }
 
     public Fisioterapeuta fromDTO(FisioterapeutaDTO objDto) {
         return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(),
-                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getEspecialidade());
+                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito());
     }
 
     @Transactional
@@ -75,7 +75,6 @@ public class FisioterapeutaService {
         newObj.setEmail(obj.getEmail());
         newObj.setSenha(obj.getSenha());
         newObj.setCrefito(obj.getCrefito());
-        newObj.setEspecialidade(obj.getEspecialidade());
     }
 
 }

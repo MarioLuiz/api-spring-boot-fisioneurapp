@@ -42,8 +42,6 @@ public class Fisioterapeuta implements Serializable {
 
 	private String crefito;
 
-	private String especialidade;
-
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
@@ -56,15 +54,13 @@ public class Fisioterapeuta implements Serializable {
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
-	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito,
-			String especialidade) {
+	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito) {
 		this.id = id;
 		this.nome = nome;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.email = email;
 		this.senha = senha;
 		this.crefito = crefito;
-		this.especialidade = especialidade;
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
@@ -122,14 +118,6 @@ public class Fisioterapeuta implements Serializable {
 
 	public void addPerfil(Perfil perfil) {
 		perfis.add(perfil.getCod());
-	}
-
-	public String getEspecialidade() {
-		return especialidade;
-	}
-
-	public void setEspecialidade(String especialidade) {
-		this.especialidade = especialidade;
 	}
 
 	public List<Paciente> getPacientes() {
