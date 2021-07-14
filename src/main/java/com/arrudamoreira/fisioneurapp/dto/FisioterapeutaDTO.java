@@ -38,7 +38,7 @@ public class FisioterapeutaDTO implements Serializable {
 
     }
 
-    public FisioterapeutaDTO(Long id, String Nome, String cpfOuCnpj, String email, String senha, String crefito, String especialidade) {
+    public FisioterapeutaDTO(Long id, String Nome, String cpfOuCnpj, String email, String senha, String crefito) {
         this.id = id;
         this.Nome = Nome;
         this.cpfOuCnpj = cpfOuCnpj;

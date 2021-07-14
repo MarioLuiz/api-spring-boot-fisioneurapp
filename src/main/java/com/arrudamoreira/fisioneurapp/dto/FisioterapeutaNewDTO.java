@@ -27,9 +27,6 @@ public class FisioterapeutaNewDTO implements Serializable{
     @NotEmpty(message = "Preenchimento Obrigatório")
     private String crefito;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
-    private String especialidade;
-    
     public FisioterapeutaNewDTO(){
     }
 
@@ -73,11 +70,4 @@ public class FisioterapeutaNewDTO implements Serializable{
         this.crefito = crefito;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
 }
