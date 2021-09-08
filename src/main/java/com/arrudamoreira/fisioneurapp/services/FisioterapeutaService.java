@@ -24,57 +24,69 @@ import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundExceptio
 @Service
 public class FisioterapeutaService {
 
-    @Autowired
-    private FisioterapeutaRepository repo;
+	@Autowired
+	private FisioterapeutaRepository repo;
 
-    @Autowired
-    private BCryptPasswordEncoder pe;
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
-    public List<Fisioterapeuta> findAll() {
-        return repo.findAll();
-    }
+	public List<Fisioterapeuta> findAll() {
+		return repo.findAll();
+	}
 
-    public Fisioterapeuta find(Long id) {
-    	
-    	UserSS user = UserService.authenticated();
-    	if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !id.equals(user.getId())) {
-    		throw new AuthorizationException("Acesso negado");
-    	}
-    	
-        Optional<Fisioterapeuta> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Objeto não encontrado! Id: " + id + ", Tipo: " + Fisioterapeuta.class.getName()));
-    }
+	public Fisioterapeuta find(Long id) {
 
-    public Fisioterapeuta fromDTO(FisioterapeutaNewDTO objDto) {
-        return new Fisioterapeuta(null, objDto.getNome(), objDto.getCpfOuCnpj(),
-                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito());
-    }
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 
-    public Fisioterapeuta fromDTO(FisioterapeutaDTO objDto) {
-        return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(),
-                objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCrefito());
-    }
+		Optional<Fisioterapeuta> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Fisioterapeuta.class.getName()));
+	}
 
-    @Transactional
-    public Fisioterapeuta insert(Fisioterapeuta obj) {
-        obj.setId(null);
-        obj = repo.save(obj);
-        return obj;
-    }
+	public Fisioterapeuta findByEmail(String email) {
 
-    public Fisioterapeuta update(Fisioterapeuta obj) {
-        Fisioterapeuta newObj = find(obj.getId());
-        updateData(newObj, obj);
-        return repo.save(newObj);
-    }
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 
-    private void updateData(Fisioterapeuta newObj, Fisioterapeuta obj) {
-        newObj.setNome(obj.getNome());
-        newObj.setCpfOuCnpj(obj.getCpfOuCnpj());
-        newObj.setEmail(obj.getEmail());
-        newObj.setSenha(obj.getSenha());
-        newObj.setCrefito(obj.getCrefito());
-    }
+		Optional<Fisioterapeuta> obj = Optional.ofNullable(repo.findByEmail(email));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! email: " + email + ", Tipo: " + Fisioterapeuta.class.getName()));
+	}
+
+	public Fisioterapeuta fromDTO(FisioterapeutaNewDTO objDto) {
+		return new Fisioterapeuta(null, objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
+				pe.encode(objDto.getSenha()), objDto.getCrefito());
+	}
+
+	public Fisioterapeuta fromDTO(FisioterapeutaDTO objDto) {
+		return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
+				pe.encode(objDto.getSenha()), objDto.getCrefito());
+	}
+
+	@Transactional
+	public Fisioterapeuta insert(Fisioterapeuta obj) {
+		obj.setId(null);
+		obj = repo.save(obj);
+		return obj;
+	}
+
+	public Fisioterapeuta update(Fisioterapeuta obj) {
+		Fisioterapeuta newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Fisioterapeuta newObj, Fisioterapeuta obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setCpfOuCnpj(obj.getCpfOuCnpj());
+		newObj.setEmail(obj.getEmail());
+		newObj.setSenha(obj.getSenha());
+		newObj.setCrefito(obj.getCrefito());
+	}
 
 }

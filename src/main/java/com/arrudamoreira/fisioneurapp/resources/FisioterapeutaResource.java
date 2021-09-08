@@ -46,6 +46,12 @@ public class FisioterapeutaResource {
         return ResponseEntity.ok(fisio);
     }
     
+    @RequestMapping(value = "/email/{email}",method = RequestMethod.GET)
+    public ResponseEntity<Fisioterapeuta> find(@PathVariable String email) {
+        Fisioterapeuta fisio = service.findByEmail(email);
+        return ResponseEntity.ok(fisio);
+    }
+    
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> insert(@Valid @RequestBody FisioterapeutaNewDTO objDto) {
         Fisioterapeuta fisio = service.fromDTO(objDto);
