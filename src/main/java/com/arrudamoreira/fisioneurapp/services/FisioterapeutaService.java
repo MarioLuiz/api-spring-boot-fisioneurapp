@@ -60,12 +60,12 @@ public class FisioterapeutaService {
 
 	public Fisioterapeuta fromDTO(FisioterapeutaNewDTO objDto) {
 		return new Fisioterapeuta(null, objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
-				pe.encode(objDto.getSenha()), objDto.getCrefito());
+				pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getDataNascimento());
 	}
 
 	public Fisioterapeuta fromDTO(FisioterapeutaDTO objDto) {
 		return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
-				pe.encode(objDto.getSenha()), objDto.getCrefito());
+				pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getDataNascimento());
 	}
 
 	@Transactional

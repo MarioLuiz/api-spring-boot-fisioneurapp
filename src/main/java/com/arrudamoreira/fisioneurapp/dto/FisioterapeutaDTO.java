@@ -1,6 +1,8 @@
 package com.arrudamoreira.fisioneurapp.dto;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,35 +18,39 @@ public class FisioterapeutaDTO implements Serializable {
 
     @NotEmpty(message = "Preenchimento Obrigatório")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
-    private String Nome;
+    private String nome;
 
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do cpfOuCnpj")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String cpfOuCnpj;
 
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do email")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String email;
 
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório da senha")
     @Length(min = 8, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String senha;
 
     private String crefito;
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do crefito")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+    
+    @NotEmpty(message = "Preenchimento Obrigatório da dataNascimento")
+    private Date dataNascimento;
 
     public FisioterapeutaDTO() {
 
     }
 
-    public FisioterapeutaDTO(Long id, String Nome, String cpfOuCnpj, String email, String senha, String crefito) {
+    public FisioterapeutaDTO(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Date dataNascimento) {
         this.id = id;
-        this.Nome = Nome;
+        this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
         this.email = email;
         this.senha = senha;
         this.crefito = crefito;
+        this.dataNascimento = dataNascimento;
     }
 
     public Long getId() {
@@ -56,11 +62,11 @@ public class FisioterapeutaDTO implements Serializable {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCpfOuCnpj() {
@@ -95,4 +101,11 @@ public class FisioterapeutaDTO implements Serializable {
         this.crefito = crefito;
     }
 
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 }

@@ -2,6 +2,7 @@ package com.arrudamoreira.fisioneurapp.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,18 +50,21 @@ public class Fisioterapeuta implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "fisioterapeutas")
 	private List<Paciente> pacientes = new ArrayList<>();
+	
+	private Date dataNascimento;
 
 	public Fisioterapeuta() {
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
-	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito) {
+	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Date dataNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.email = email;
 		this.senha = senha;
 		this.crefito = crefito;
+		this.dataNascimento = dataNascimento;
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
@@ -126,6 +130,14 @@ public class Fisioterapeuta implements Serializable {
 
 	public void setPacientes(List<Paciente> pacientes) {
 		this.pacientes = pacientes;
+	}
+	
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	@Override

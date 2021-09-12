@@ -1,6 +1,8 @@
 package com.arrudamoreira.fisioneurapp.dto;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
@@ -11,21 +13,24 @@ import org.hibernate.validator.constraints.Length;
 public class FisioterapeutaNewDTO implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do nome")
     @Length(min = 5, max = 120, message = "O tamanho do nome deve ser entre 5 a 120 caracteres")
     private String nome;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do cpfOuCnpj")
     private String cpfOuCnpj;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do email")
     private String email;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório da senha")
     private String senha;
     
-    @NotEmpty(message = "Preenchimento Obrigatório")
+    @NotEmpty(message = "Preenchimento Obrigatório do crefito")
     private String crefito;
+    
+    @NotEmpty(message = "Preenchimento Obrigatório do crefito")
+    private Date dataNascimento;
     
     public FisioterapeutaNewDTO(){
     }
@@ -70,4 +75,11 @@ public class FisioterapeutaNewDTO implements Serializable{
         this.crefito = crefito;
     }
 
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 }
