@@ -57,14 +57,14 @@ public class Fisioterapeuta implements Serializable {
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
-	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Date dataNascimento) {
+	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Long dataNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.email = email;
 		this.senha = senha;
 		this.crefito = crefito;
-		this.dataNascimento = dataNascimento;
+		this.dataNascimento = new Date(dataNascimento);
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 

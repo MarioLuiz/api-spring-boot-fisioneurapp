@@ -37,13 +37,13 @@ public class FisioterapeutaDTO implements Serializable {
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     
     @NotEmpty(message = "Preenchimento Obrigatório da dataNascimento")
-    private Date dataNascimento;
+    private Long dataNascimento;
 
     public FisioterapeutaDTO() {
 
     }
 
-    public FisioterapeutaDTO(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Date dataNascimento) {
+    public FisioterapeutaDTO(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Long dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
@@ -101,11 +101,11 @@ public class FisioterapeutaDTO implements Serializable {
         this.crefito = crefito;
     }
 
-	public Date getDataNascimento() {
+	public Long getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(Long dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 }

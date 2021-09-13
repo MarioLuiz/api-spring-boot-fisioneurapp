@@ -21,6 +21,8 @@ import com.arrudamoreira.fisioneurapp.repositories.ProntuarioRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -64,9 +66,12 @@ public class DBService {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         SimpleDateFormat sdfNascimento = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date dataNascimentoFisio1 = sdfNascimento.parse("25/04/1990");
+        Date dataNascimentoFisio2 = sdfNascimento.parse("24/02/1992");
 
-        Fisioterapeuta fisio1 = new Fisioterapeuta(null, "Revihery C. Moreira", "04319203725", "revihery@gmail.com", pe.encode("123456Revy"), "1312354F", sdfNascimento.parse("25/04/1990"));
-        Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "mario@gmail.com", pe.encode("123456"), "1319954F", sdfNascimento.parse("24/02/1992"));
+        Fisioterapeuta fisio1 = new Fisioterapeuta(null, "Revihery C. Moreira", "04319203725", "revihery@gmail.com", pe.encode("123456Revy"), "1312354F", dataNascimentoFisio1.getTime());
+        Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "mario@gmail.com", pe.encode("123456"), "1319954F", dataNascimentoFisio2.getTime());
         
         fisio2.addPerfil(Perfil.ADMIN_FISIO);
 

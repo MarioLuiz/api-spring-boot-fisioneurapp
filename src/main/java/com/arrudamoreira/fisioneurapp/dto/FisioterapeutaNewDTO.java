@@ -29,8 +29,7 @@ public class FisioterapeutaNewDTO implements Serializable{
     @NotEmpty(message = "Preenchimento Obrigatório do crefito")
     private String crefito;
     
-    @NotEmpty(message = "Preenchimento Obrigatório do crefito")
-    private Date dataNascimento;
+    private long dataNascimento;
     
     public FisioterapeutaNewDTO(){
     }
@@ -75,11 +74,11 @@ public class FisioterapeutaNewDTO implements Serializable{
         this.crefito = crefito;
     }
 
-	public Date getDataNascimento() {
+	public Long getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(Long dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 }
