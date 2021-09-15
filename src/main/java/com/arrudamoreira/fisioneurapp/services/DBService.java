@@ -67,11 +67,11 @@ public class DBService {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         SimpleDateFormat sdfNascimento = new SimpleDateFormat("dd/MM/yyyy");
         
-        Date dataNascimentoFisio1 = sdfNascimento.parse("25/04/1990");
-        Date dataNascimentoFisio2 = sdfNascimento.parse("24/02/1992");
+        //Date dataNascimentoFisio1 = sdfNascimento.parse("25/04/1990"); dataNascimentoFisio1.getTime()
+        //Date dataNascimentoFisio2 = sdfNascimento.parse("24/02/1992"); dataNascimentoFisio2.getTime()
 
-        Fisioterapeuta fisio1 = new Fisioterapeuta(null, "Revihery C. Moreira", "04319203725", "revihery@gmail.com", pe.encode("123456Revy"), "1312354F", dataNascimentoFisio1.getTime());
-        Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "mario@gmail.com", pe.encode("123456"), "1319954F", dataNascimentoFisio2.getTime());
+        Fisioterapeuta fisio1 = new Fisioterapeuta(null, "Revihery C. Moreira", "04319203725", "revihery@gmail.com", pe.encode("123456Revy"), "1312354F", "1990-04-25");
+        Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "mario@gmail.com", pe.encode("123456"), "1319954F", "1992-02-24");
         
         fisio2.addPerfil(Perfil.ADMIN_FISIO);
 

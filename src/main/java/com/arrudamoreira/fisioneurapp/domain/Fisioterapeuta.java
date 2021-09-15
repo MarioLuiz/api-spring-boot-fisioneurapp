@@ -1,6 +1,8 @@
 package com.arrudamoreira.fisioneurapp.domain;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -57,14 +59,14 @@ public class Fisioterapeuta implements Serializable {
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
-	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, Long dataNascimento) {
+	public Fisioterapeuta(Long id, String nome, String cpfOuCnpj, String email, String senha, String crefito, String dataNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.email = email;
 		this.senha = senha;
 		this.crefito = crefito;
-		this.dataNascimento = new Date(dataNascimento);
+		this.dataNascimento = dataConvert(dataNascimento);
 		addPerfil(Perfil.CLIENTE_FISIO);
 	}
 
@@ -138,6 +140,18 @@ public class Fisioterapeuta implements Serializable {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	private Date dataConvert(String dataString) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataFormatado = null;
+		try {
+			dataFormatado = sdf.parse(dataString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao converter data: "+ e);
+		}
+		return dataFormatado;
 	}
 
 	@Override

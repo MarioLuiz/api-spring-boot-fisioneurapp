@@ -14,7 +14,7 @@ public class FisioterapeutaNewDTO implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @NotEmpty(message = "Preenchimento Obrigatório do nome")
-    @Length(min = 5, max = 120, message = "O tamanho do nome deve ser entre 5 a 120 caracteres")
+    @Length(min = 2, max = 120, message = "O tamanho do nome deve ser entre 5 a 120 caracteres")
     private String nome;
     
     @NotEmpty(message = "Preenchimento Obrigatório do cpfOuCnpj")
@@ -29,7 +29,8 @@ public class FisioterapeutaNewDTO implements Serializable{
     @NotEmpty(message = "Preenchimento Obrigatório do crefito")
     private String crefito;
     
-    private long dataNascimento;
+    @NotEmpty(message = "Preenchimento Obrigatório da data")
+    private String dataNascimento;
     
     public FisioterapeutaNewDTO(){
     }
@@ -74,11 +75,11 @@ public class FisioterapeutaNewDTO implements Serializable{
         this.crefito = crefito;
     }
 
-	public Long getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Long dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 }
