@@ -1,8 +1,6 @@
 package com.arrudamoreira.fisioneurapp.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 

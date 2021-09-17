@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.FisioterapeutaService;
 
 /**
@@ -60,8 +61,26 @@ public class FisioterapeutaResource {
         return ResponseEntity.created(uri).build();
     }
     
+    // Apenas Users com role Admin podem acessar esse recurso
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody FisioterapeutaDTO objDto, @PathVariable Long id) {
+        Fisioterapeuta fisio = service.fromDTO(objDto);
+        fisio.setId(id);
+        fisio = service.update(fisio);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @RequestMapping(value = "cadastro/{id}",method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateCadastro(@Valid @RequestBody FisioterapeutaUpdateDTO objDto, @PathVariable Long id) {
+    	Fisioterapeuta fisio = service.fromUpdateDTO(objDto);
+        fisio.setId(id);
+        fisio = service.update(fisio);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @RequestMapping(value = "senha/{id}",method = RequestMethod.PUT)
+    public ResponseEntity<Void> updatePass(@Valid @RequestBody FisioterapeutaDTO objDto, @PathVariable Long id) {
         Fisioterapeuta fisio = service.fromDTO(objDto);
         fisio.setId(id);
         fisio = service.update(fisio);

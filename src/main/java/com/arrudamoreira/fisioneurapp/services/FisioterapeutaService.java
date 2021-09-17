@@ -12,6 +12,7 @@ import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.security.UserSS;
 import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
@@ -67,6 +68,13 @@ public class FisioterapeutaService {
 		return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
 				pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getDataNascimento());
 	}
+	
+	public Fisioterapeuta fromUpdateDTO(FisioterapeutaUpdateDTO objDto) {
+		validaAcessoFisioterapeuta(objDto.getId());
+		Fisioterapeuta oldFisio = find(objDto.getId());
+		return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
+				oldFisio.getSenha(), objDto.getCrefito(), objDto.getDataNascimento());
+	}
 
 	@Transactional
 	public Fisioterapeuta insert(Fisioterapeuta obj) {
@@ -87,6 +95,13 @@ public class FisioterapeutaService {
 		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
 		newObj.setCrefito(obj.getCrefito());
+	}
+	
+	private void validaAcessoFisioterapeuta(Long id) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 	}
 
 }
