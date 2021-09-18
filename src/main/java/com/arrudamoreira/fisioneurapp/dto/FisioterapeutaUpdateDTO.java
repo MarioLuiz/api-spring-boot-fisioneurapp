@@ -12,8 +12,6 @@ public class FisioterapeutaUpdateDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-
     @NotEmpty(message = "Preenchimento Obrigatório")
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     private String nome;
@@ -37,21 +35,12 @@ public class FisioterapeutaUpdateDTO implements Serializable {
 
     }
 
-    public FisioterapeutaUpdateDTO(Long id, String nome, String cpfOuCnpj, String email, String crefito, String dataNascimento) {
-        this.id = id;
+    public FisioterapeutaUpdateDTO(String nome, String cpfOuCnpj, String email, String crefito, String dataNascimento) {
         this.nome = nome;
         this.cpfOuCnpj = cpfOuCnpj;
         this.email = email;
         this.crefito = crefito;
         this.dataNascimento = dataNascimento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {

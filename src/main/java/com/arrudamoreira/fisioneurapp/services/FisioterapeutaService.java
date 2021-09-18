@@ -69,10 +69,10 @@ public class FisioterapeutaService {
 				pe.encode(objDto.getSenha()), objDto.getCrefito(), objDto.getDataNascimento());
 	}
 	
-	public Fisioterapeuta fromUpdateDTO(FisioterapeutaUpdateDTO objDto) {
-		validaAcessoFisioterapeuta(objDto.getId());
-		Fisioterapeuta oldFisio = find(objDto.getId());
-		return new Fisioterapeuta(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
+	public Fisioterapeuta fromUpdateDTO(FisioterapeutaUpdateDTO objDto, Long id) {
+		validaAcessoFisioterapeuta(id);
+		Fisioterapeuta oldFisio = find(id);
+		return new Fisioterapeuta(id, objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
 				oldFisio.getSenha(), objDto.getCrefito(), objDto.getDataNascimento());
 	}
 

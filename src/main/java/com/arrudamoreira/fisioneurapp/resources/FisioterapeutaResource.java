@@ -73,7 +73,7 @@ public class FisioterapeutaResource {
     
     @RequestMapping(value = "cadastro/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Void> updateCadastro(@Valid @RequestBody FisioterapeutaUpdateDTO objDto, @PathVariable Long id) {
-    	Fisioterapeuta fisio = service.fromUpdateDTO(objDto);
+    	Fisioterapeuta fisio = service.fromUpdateDTO(objDto, id);
         fisio.setId(id);
         fisio = service.update(fisio);
         return ResponseEntity.noContent().build();
