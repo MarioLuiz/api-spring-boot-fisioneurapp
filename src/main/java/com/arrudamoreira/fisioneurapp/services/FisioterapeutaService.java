@@ -95,6 +95,7 @@ public class FisioterapeutaService {
 		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
 		newObj.setCrefito(obj.getCrefito());
+		newObj.setDataNascimento(obj.getDataNascimento());
 	}
 	
 	private void validaAcessoFisioterapeuta(Long id) {
