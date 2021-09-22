@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
+import com.arrudamoreira.fisioneurapp.services.exceptions.CustomValidationException;
 import com.arrudamoreira.fisioneurapp.services.exceptions.DataIntegrityException;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
@@ -46,5 +47,13 @@ public class ResourceExceptionHandler {
 
 		StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
+	}
+
+	@ExceptionHandler(CustomValidationException.class)
+	public ResponseEntity<StandardError> customValidation(CustomValidationException e, HttpServletRequest request) {
+
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(),
+				System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 }
