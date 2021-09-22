@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaSenhaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.FisioterapeutaService;
 
@@ -80,10 +81,10 @@ public class FisioterapeutaResource {
     }
     
     @RequestMapping(value = "senha/{id}",method = RequestMethod.PUT)
-    public ResponseEntity<Void> updatePass(@Valid @RequestBody FisioterapeutaDTO objDto, @PathVariable Long id) {
-        Fisioterapeuta fisio = service.fromDTO(objDto);
-        fisio.setId(id);
-        fisio = service.update(fisio);
+    public ResponseEntity<Void> updatePass(@Valid @RequestBody FisioterapeutaSenhaUpdateDTO objDto, @PathVariable Long id) {
+//        Fisioterapeuta fisio = service.fromDTO(objDto);
+//        fisio.setId(id);
+//        fisio = service.update(fisio);
         return ResponseEntity.noContent().build();
     }
 }

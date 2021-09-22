@@ -12,10 +12,12 @@ import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaSenhaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.dto.FisioterapeutaUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.security.UserSS;
 import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
+import com.arrudamoreira.fisioneurapp.services.exceptions.CustomValidationException;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -75,6 +77,15 @@ public class FisioterapeutaService {
 		return new Fisioterapeuta(id, objDto.getNome(), objDto.getCpfOuCnpj(), objDto.getEmail(),
 				oldFisio.getSenha(), objDto.getCrefito(), objDto.getDataNascimento());
 	}
+	
+	public Fisioterapeuta fromSenhaUpdateDTO(FisioterapeutaSenhaUpdateDTO objDto, Long id) {
+		validaAcessoFisioterapeuta(id);
+		Fisioterapeuta fisio = find(id);
+		validaSenhasFisioterapeuta(id, objDto, fisio);
+		
+		return new Fisioterapeuta(id, fisio.getNome(), fisio.getCpfOuCnpj(), fisio.getEmail(),
+				objDto.getNovaSenha(), fisio.getCrefito(), fisio.getDataNascimento());
+	}
 
 	@Transactional
 	public Fisioterapeuta insert(Fisioterapeuta obj) {
@@ -102,6 +113,17 @@ public class FisioterapeutaService {
 		UserSS user = UserService.authenticated();
 		if (user == null || !user.hasRole(Perfil.ADMIN_FISIO) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
+		}
+	}
+	
+	private void validaSenhasFisioterapeuta(Long id, FisioterapeutaSenhaUpdateDTO objDto, Fisioterapeuta fisio) {
+		
+		if(!pe.encode(objDto.getSenhaAtual()).equals(fisio.getSenha())) {
+			throw new CustomValidationException("Senha invalida");
+		}
+		
+		if(objDto.getNovaSenha().equals(objDto.getSenhaConfirmacao())) {
+			throw new CustomValidationException("Nova senha e senha confirmação não são idênticas");
 		}
 	}
 
