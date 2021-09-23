@@ -82,9 +82,9 @@ public class FisioterapeutaResource {
     
     @RequestMapping(value = "senha/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Void> updatePass(@Valid @RequestBody FisioterapeutaSenhaUpdateDTO objDto, @PathVariable Long id) {
-//        Fisioterapeuta fisio = service.fromDTO(objDto);
-//        fisio.setId(id);
-//        fisio = service.update(fisio);
+        Fisioterapeuta fisio = service.fromSenhaUpdateDTO(objDto, id);
+        fisio.setId(id);
+        fisio = service.update(fisio);
         return ResponseEntity.noContent().build();
     }
 }

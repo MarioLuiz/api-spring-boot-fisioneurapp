@@ -118,11 +118,11 @@ public class FisioterapeutaService {
 	
 	private void validaSenhasFisioterapeuta(Long id, FisioterapeutaSenhaUpdateDTO objDto, Fisioterapeuta fisio) {
 		
-		if(!pe.encode(objDto.getSenhaAtual()).equals(fisio.getSenha())) {
+		if(!pe.matches(objDto.getSenhaAtual(), fisio.getSenha())) {
 			throw new CustomValidationException("Senha invalida");
 		}
 		
-		if(objDto.getNovaSenha().equals(objDto.getSenhaConfirmacao())) {
+		if(!objDto.getNovaSenha().equals(objDto.getSenhaConfirmacao())) {
 			throw new CustomValidationException("Nova senha e senha confirmação não são idênticas");
 		}
 	}
