@@ -84,7 +84,7 @@ public class FisioterapeutaService {
 		validaSenhasFisioterapeuta(id, objDto, fisio);
 		
 		return new Fisioterapeuta(id, fisio.getNome(), fisio.getCpfOuCnpj(), fisio.getEmail(),
-				objDto.getNovaSenha(), fisio.getCrefito(), fisio.getDataNascimento());
+				pe.encode(objDto.getNovaSenha()), fisio.getCrefito(), fisio.getDataNascimento());
 	}
 
 	@Transactional
