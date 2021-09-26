@@ -3,6 +3,8 @@ package com.arrudamoreira.fisioneurapp.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +48,8 @@ public class Paciente implements Serializable {
     private String telefone;
 
     private String nome;
+    
+    private Date dataNascimento;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
@@ -57,12 +61,13 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome) {
+    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento) {
         this.id = id;
         this.dataCadastro = dataCadastro;
         this.cpf = cpf;
         this.telefone = telefone;
         this.nome = nome;
+        this.dataNascimento = dataConvert(dataNascimento);
     }
 
     public Long getId() {
@@ -129,7 +134,27 @@ public class Paciente implements Serializable {
         this.prontuario = prontuario;
     }
 
-    @Override
+    public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	
+	private Date dataConvert(String dataString) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataFormatada = null;
+		try {
+			dataFormatada = sdf.parse(dataString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao converter data: "+ e);
+		}
+		return dataFormatada;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.id);

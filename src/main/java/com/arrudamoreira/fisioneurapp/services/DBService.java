@@ -75,10 +75,10 @@ public class DBService {
         
         fisio2.addPerfil(Perfil.ADMIN_FISIO);
 
-        Paciente pac1 = new Paciente(null, sdf.parse("30/09/2019 10:44"), "08987934871", "992857488", "Luiz Carlos");
-        Paciente pac2 = new Paciente(null, sdf.parse("12/08/2018 00:12"), "08987933871", "992857488", "Mario Luiz");
-        Paciente pac3 = new Paciente(null, sdf.parse("11/12/2019 05:33"), "08987988871", "992857488", "Revihery Luiza");
-        Paciente pac4 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "08999935871", "992857488", "Beatriz Almeida");
+        Paciente pac1 = new Paciente(null, sdf.parse("30/09/2019 10:44"), "08987934871", "992857488", "Luiz Carlos", "1992-06-17");
+        Paciente pac2 = new Paciente(null, sdf.parse("12/08/2018 00:12"), "08987933871", "992857488", "Mario Luiz", "1992-02-24");
+        Paciente pac3 = new Paciente(null, sdf.parse("11/12/2019 05:33"), "08987988871", "992857488", "Revihery Luiza", "1990-04-25");
+        Paciente pac4 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "08999935871", "992857488", "Beatriz Almeida", "1963-11-18");
 
         Endereco ende1 = new Endereco(null, 79114785, 138, "Rua Belmonte", "Vila Célia", pac1);
         Endereco ende2 = new Endereco(null, 52114785, 1500, "Avenida Mato Grosso", "Centro", pac2);
