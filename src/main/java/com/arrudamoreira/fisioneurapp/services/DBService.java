@@ -1,5 +1,13 @@
 package com.arrudamoreira.fisioneurapp.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
 import com.arrudamoreira.fisioneurapp.domain.Encaminhamento;
 import com.arrudamoreira.fisioneurapp.domain.Endereco;
@@ -9,7 +17,6 @@ import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
-import com.arrudamoreira.fisioneurapp.domain.enums.TipoPessoa;
 import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EncaminhamentoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EnderecoRepository;
@@ -18,15 +25,6 @@ import com.arrudamoreira.fisioneurapp.repositories.ExameRepository;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
 import com.arrudamoreira.fisioneurapp.repositories.ProntuarioRepository;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -75,10 +73,10 @@ public class DBService {
         
         fisio2.addPerfil(Perfil.ADMIN_FISIO);
 
-        Paciente pac1 = new Paciente(null, sdf.parse("30/09/2019 10:44"), "08987934871", "992857488", "Luiz Carlos", "1992-06-17");
-        Paciente pac2 = new Paciente(null, sdf.parse("12/08/2018 00:12"), "08987933871", "992857488", "Mario Luiz", "1992-02-24");
-        Paciente pac3 = new Paciente(null, sdf.parse("11/12/2019 05:33"), "08987988871", "992857488", "Revihery Luiza", "1990-04-25");
-        Paciente pac4 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "08999935871", "992857488", "Beatriz Almeida", "1963-11-18");
+        Paciente pac1 = new Paciente(null, sdf.parse("30/09/2019 10:44"), "08987934871", "992857488", "Luiz Carlos", "1992-06-17", "luiz@gmail.com");
+        Paciente pac2 = new Paciente(null, sdf.parse("12/08/2018 00:12"), "08987933871", "992857488", "Mario Luiz", "1992-02-24", "marioluiz@gmail.com");
+        Paciente pac3 = new Paciente(null, sdf.parse("11/12/2019 05:33"), "08987988871", "992857488", "Revihery Luiza", "1990-04-25", "reviheryluiza@gmail.com");
+        Paciente pac4 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "08999935871", "992857488", "Beatriz Almeida", "1963-11-18", "beatrizalmeida@gmail.com");
 
         Endereco ende1 = new Endereco(null, 79114785, 138, "Rua Belmonte", "Vila Célia", pac1);
         Endereco ende2 = new Endereco(null, 52114785, 1500, "Avenida Mato Grosso", "Centro", pac2);

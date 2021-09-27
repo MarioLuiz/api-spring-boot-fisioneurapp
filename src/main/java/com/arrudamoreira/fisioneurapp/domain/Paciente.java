@@ -50,6 +50,8 @@ public class Paciente implements Serializable {
     private String nome;
     
     private Date dataNascimento;
+    
+    private String email;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
@@ -61,13 +63,14 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento) {
+    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento, String email) {
         this.id = id;
         this.dataCadastro = dataCadastro;
         this.cpf = cpf;
         this.telefone = telefone;
         this.nome = nome;
         this.dataNascimento = dataConvert(dataNascimento);
+        this.email = email;
     }
 
     public Long getId() {
@@ -142,6 +145,14 @@ public class Paciente implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private Date dataConvert(String dataString) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataFormatada = null;
