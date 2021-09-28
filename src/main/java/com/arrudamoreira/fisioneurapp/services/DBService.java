@@ -128,10 +128,10 @@ public class DBService {
         pac3.getFisioterapeutas().add(fisio2);
         pac4.getFisioterapeutas().add(fisio2);
 
-        pac1.getEnderecos().add(ende1);
-        pac2.getEnderecos().add(ende2);
-        pac3.getEnderecos().add(ende3);
-        pac4.getEnderecos().add(ende4);
+        pac1.setEndereco(ende1);
+        pac2.setEndereco(ende2);
+        pac3.setEndereco(ende3);
+        pac4.setEndereco(ende4);
 
         ende1.setPaciente(pac1);
         ende2.setPaciente(pac2);

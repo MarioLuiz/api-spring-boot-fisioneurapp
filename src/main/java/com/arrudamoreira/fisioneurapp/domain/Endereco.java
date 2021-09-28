@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -29,8 +32,8 @@ public class Endereco implements Serializable {
     
     private String bairro;
     
-    @ManyToOne
-    @JoinColumn(name="paciente_id")
+    @JsonIgnore
+    @OneToOne(mappedBy = "endereco")
     private Paciente paciente;
     
     public Endereco(){

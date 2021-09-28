@@ -26,126 +26,125 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Paciente implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "PACIENTE_FISIOTERAPEUTA",
-            joinColumns = @JoinColumn(name = "paciente_id"),
-            inverseJoinColumns = @JoinColumn(name = "fisioterapeuta_id")
-    )
-    private List<Fisioterapeuta> fisioterapeutas = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "PACIENTE_FISIOTERAPEUTA", joinColumns = @JoinColumn(name = "paciente_id"), inverseJoinColumns = @JoinColumn(name = "fisioterapeuta_id"))
+	private List<Fisioterapeuta> fisioterapeutas = new ArrayList<>();
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm")
-    private Date dataCadastro;
+	@JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+	private Date dataCadastro;
 
-    private String cpf;
+	private String cpf;
 
-    private String telefone;
+	private String telefone;
 
-    private String nome;
-    
-    private Date dataNascimento;
-    
-    private String email;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
-    private List<Endereco> enderecos = new ArrayList<>();
+	private String nome;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+	private Date dataNascimento;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "prontuario_id", referencedColumnName = "id")
-    private Prontuario prontuario;
+	private String email;
 
-    public Paciente() {
-    }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
+	private Endereco endereco;
 
-    public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento, String email) {
-        this.id = id;
-        this.dataCadastro = dataCadastro;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.nome = nome;
-        this.dataNascimento = dataConvert(dataNascimento);
-        this.email = email;
-    }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "prontuario_id", referencedColumnName = "id")
+	private Prontuario prontuario;
 
-    public Long getId() {
-        return id;
-    }
+	public Paciente() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento,
+			String email) {
+		this.id = id;
+		this.dataCadastro = dataCadastro;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.nome = nome;
+		this.dataNascimento = dataConvert(dataNascimento);
+		this.email = email;
+	}
 
-    public List<Fisioterapeuta> getFisioterapeutas() {
-        return fisioterapeutas;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setFisioterapeutas(List<Fisioterapeuta> fisioterapeutas) {
-        this.fisioterapeutas = fisioterapeutas;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
+	public List<Fisioterapeuta> getFisioterapeutas() {
+		return fisioterapeutas;
+	}
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
+	public void setFisioterapeutas(List<Fisioterapeuta> fisioterapeutas) {
+		this.fisioterapeutas = fisioterapeutas;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
-    public Date getDataNascimento() {
+	public Prontuario getProntuario() {
+		return prontuario;
+	}
+
+	public void setProntuario(Prontuario prontuario) {
+		this.prontuario = prontuario;
+	}
+
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -161,38 +160,40 @@ public class Paciente implements Serializable {
 			dataFormatada = sdf.parse(dataString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("Erro ao converter data: "+ e);
+			System.out.println("Erro ao converter data: " + e);
 		}
 		return dataFormatada;
 	}
 
 	@Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
+	public int hashCode() {
+		int hash = 7;
+		hash = 23 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Paciente other = (Paciente) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Paciente other = (Paciente) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "Paciente{" + "fisioterapeutas=" + fisioterapeutas + ", dataCadastro=" + dataCadastro + ", cpf=" + cpf + ", telefone=" + telefone + ", nome=" + nome + ", enderecos=" + enderecos + ", prontuario=" + prontuario + '}';
-    }
+	@Override
+	public String toString() {
+		return "Paciente{" + "fisioterapeutas=" + fisioterapeutas + ", dataCadastro=" + dataCadastro + ", cpf=" + cpf
+				+ ", telefone=" + telefone + ", nome=" + nome + ", endereco=" + endereco + ", prontuario="
+				+ prontuario + '}';
+	}
 }
