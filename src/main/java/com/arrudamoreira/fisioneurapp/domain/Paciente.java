@@ -52,7 +52,8 @@ public class Paciente implements Serializable {
     private Date dataNascimento;
     
     private String email;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
