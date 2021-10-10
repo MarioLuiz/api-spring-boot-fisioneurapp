@@ -58,5 +58,11 @@ public class PacienteService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
+	public Page<Paciente> findPageCustom(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		nomePesquisado = "%" + nomePesquisado + "%";
+		return repo.findByNomeLike(nomePesquisado,pageRequest);
+	}
 
 }

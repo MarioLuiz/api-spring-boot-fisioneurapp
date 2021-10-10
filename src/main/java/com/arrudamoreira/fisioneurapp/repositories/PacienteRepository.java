@@ -1,8 +1,11 @@
 package com.arrudamoreira.fisioneurapp.repositories;
 
-import com.arrudamoreira.fisioneurapp.domain.Paciente;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.arrudamoreira.fisioneurapp.domain.Paciente;
 
 /**
  *
@@ -10,5 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
-
+	
+	Page<Paciente> findByNomeLike(String nome, Pageable pageable);
 }
