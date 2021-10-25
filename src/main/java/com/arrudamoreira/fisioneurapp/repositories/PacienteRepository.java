@@ -14,7 +14,7 @@ import com.arrudamoreira.fisioneurapp.domain.Paciente;
  * @author Mario Arruda
  */
 @Repository
-public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
+public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 	
 	Page<Paciente> findByNomeLike(String nome, Pageable pageable);
 

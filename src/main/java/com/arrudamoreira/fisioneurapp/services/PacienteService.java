@@ -13,12 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
-import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
 import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
 import com.arrudamoreira.fisioneurapp.dto.PacienteUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
-import com.arrudamoreira.fisioneurapp.security.UserSS;
-import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
+import com.arrudamoreira.fisioneurapp.services.exceptions.DataIntegrityException;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -87,6 +85,15 @@ public class PacienteService {
 		newObj.setTelefone(obj.getTelefone());
 		newObj.setCpf(obj.getCpf());
 		newObj.setDataNascimento(obj.getDataNascimento());
+	}
+	
+	public void delete(Long id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (Exception e) {
+			throw new DataIntegrityException("Não é possivel excluir porque há prontuários relacionados. Erro: "+ e);
+		}
 	}
 
 	private void atualizandoPacienteFisioterapeuta(Long fisioterapeutaId, Paciente paciente) {
