@@ -2,6 +2,7 @@ package com.arrudamoreira.fisioneurapp.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,8 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
+import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
 import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.PacienteUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
+import com.arrudamoreira.fisioneurapp.security.UserSS;
+import com.arrudamoreira.fisioneurapp.services.exceptions.AuthorizationException;
+import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -31,6 +37,16 @@ public class PacienteService {
 	public List<Paciente> findAll() {
 		return repo.findAll();
 	}
+	
+	public Optional<Paciente> findById(Long id) {
+		return repo.findById(id);
+	}
+	
+	public Paciente find(Long id) {
+		Optional<Paciente> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Paciente.class.getName()));
+	}
 
 	@Transactional
 	public Paciente insert(Paciente obj) {
@@ -47,6 +63,30 @@ public class PacienteService {
 		atualizandoPacienteFisioterapeuta(objDto.getFisioterapeutaId(), paciente);
 
 		return paciente;
+	}
+	
+	public Paciente fromUpdateDTO(PacienteUpdateDTO objDto) {
+		
+		Paciente paciente = new Paciente(objDto.getId(), new Date(), objDto.getCpf(), objDto.getTelefone(), objDto.getNome(),
+				objDto.getDataNascimento(), objDto.getEmail());
+
+		atualizandoPacienteFisioterapeuta(objDto.getFisioterapeutaId(), paciente);
+
+		return paciente;
+	}
+	
+	public Paciente update(Paciente obj) {
+		Paciente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Paciente newObj, Paciente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
+		newObj.setTelefone(obj.getTelefone());
+		newObj.setCpf(obj.getCpf());
+		newObj.setDataNascimento(obj.getDataNascimento());
 	}
 
 	private void atualizandoPacienteFisioterapeuta(Long fisioterapeutaId, Paciente paciente) {

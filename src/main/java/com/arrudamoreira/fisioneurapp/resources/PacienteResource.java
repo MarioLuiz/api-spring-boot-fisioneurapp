@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.PacienteUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.PacienteService;
 
 /**
@@ -43,6 +44,13 @@ public class PacienteResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paciente.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody PacienteUpdateDTO objDto) {
+		Paciente paciente = service.fromUpdateDTO(objDto);
+		paciente = service.update(paciente);
+		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)

@@ -6,9 +6,11 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-public class PacienteNewDTO implements Serializable {
+public class PacienteUpdateDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	private Long id;
+
 	private Long fisioterapeutaId;
 
 	@NotEmpty(message = "Preenchimento Obrigatório do nome")
@@ -16,7 +18,7 @@ public class PacienteNewDTO implements Serializable {
 	private String nome;
 
 	private String email;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório do telefone")
 	private String telefone;
 
@@ -26,7 +28,15 @@ public class PacienteNewDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento Obrigatório da data")
 	private String dataNascimento;
 
-	public PacienteNewDTO() {
+	public PacienteUpdateDTO() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getFisioterapeutaId() {
