@@ -111,5 +111,11 @@ public class PacienteService {
 		nomePesquisado = "%" + nomePesquisado + "%";
 		return repo.findByNomeLike(nomePesquisado,pageRequest);
 	}
+	
+	public Page<Paciente> findPagePacientesSemProntuario(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		nomePesquisado = "%" + nomePesquisado + "%";
+		return repo.findByNomeLikeAndProntuarioIsNull(nomePesquisado,pageRequest);
+	}
 
 }

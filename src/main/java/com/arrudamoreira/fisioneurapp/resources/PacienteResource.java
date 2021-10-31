@@ -80,4 +80,15 @@ public class PacienteResource {
 		Page<Paciente> listPacientes = service.findPageCustom(page, linesPerPage, orderBy, direction, nome);
 		return ResponseEntity.ok(listPacientes);
 	}
+	
+	@RequestMapping(value = "/page/semProntuario", method = RequestMethod.GET)
+	public ResponseEntity<Page<Paciente>> findPageSemProntuario(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue = "24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue = "nome") String orderBy,
+			@RequestParam(value="direction", defaultValue = "ASC") String direction,
+			@RequestParam(value="nome", defaultValue = "") String nome) {
+		Page<Paciente> listPacientes = service.findPagePacientesSemProntuario(page, linesPerPage, orderBy, direction, nome);
+		return ResponseEntity.ok(listPacientes);
+	}
 }
