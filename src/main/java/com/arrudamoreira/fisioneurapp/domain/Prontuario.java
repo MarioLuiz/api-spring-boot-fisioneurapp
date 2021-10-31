@@ -28,10 +28,12 @@ public class Prontuario implements Serializable {
     private Integer numero;
 
     private String cid;
+    
+    private String cif;
 
     private Date dataCriacao;
 
-    private String resumo;
+    private String observacao;
 
     @JsonIgnore
     @OneToOne(mappedBy = "prontuario")
@@ -56,12 +58,12 @@ public class Prontuario implements Serializable {
     public Prontuario() {
     }
 
-    public Prontuario(Long id, Integer numero, String cid, Date dataCriacao, String resumo) {
+    public Prontuario(Long id, Integer numero, String cid, Date dataCriacao, String observacao) {
         this.id = id;
         this.numero = numero;
         this.cid = cid;
         this.dataCriacao = dataCriacao;
-        this.resumo = resumo;
+        this.observacao = observacao;
     }
 
     public Long getId() {
@@ -88,7 +90,15 @@ public class Prontuario implements Serializable {
         this.cid = cid;
     }
 
-    public Date getDataCriacao() {
+    public String getCif() {
+		return cif;
+	}
+
+	public void setCif(String cif) {
+		this.cif = cif;
+	}
+
+	public Date getDataCriacao() {
         return dataCriacao;
     }
 
@@ -96,12 +106,12 @@ public class Prontuario implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
-    public String getResumo() {
-        return resumo;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setResumo(String resumo) {
-        this.resumo = resumo;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Paciente getPaciente() {
