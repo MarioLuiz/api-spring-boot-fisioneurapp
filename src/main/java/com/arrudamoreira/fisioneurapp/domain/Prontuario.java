@@ -1,17 +1,19 @@
 package com.arrudamoreira.fisioneurapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -64,6 +66,16 @@ public class Prontuario implements Serializable {
         this.cid = cid;
         this.dataCriacao = dataCriacao;
         this.observacao = observacao;
+    }
+    
+    public Prontuario(Long id, Integer numero, String cid,String cif, String observacao, Paciente paciente) {
+        this.id = id;
+        this.numero = numero;
+        this.cid = cid;
+        this.cif = cif;
+        this.dataCriacao = new Date();
+        this.observacao = observacao;
+        this.paciente = paciente;
     }
 
     public Long getId() {
