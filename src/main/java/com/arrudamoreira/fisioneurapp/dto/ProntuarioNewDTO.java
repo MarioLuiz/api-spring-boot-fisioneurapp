@@ -2,15 +2,14 @@ package com.arrudamoreira.fisioneurapp.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ProntuarioNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotEmpty(message = "Preenchimento obrigatório do numero do protocolo")
 	private Long pacienteId;
 	
-	@NotEmpty(message = "Preenchimento obrigatório do numero do protocolo")
+	@NotNull
 	private Integer numero;
 
     private String cid;
