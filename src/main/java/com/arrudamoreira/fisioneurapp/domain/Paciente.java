@@ -54,7 +54,8 @@ public class Paciente implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
-
+	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prontuario_id", referencedColumnName = "id")
 	private Prontuario prontuario;

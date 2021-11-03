@@ -37,7 +37,7 @@ public class Prontuario implements Serializable {
 
     private String observacao;
 
-    @JsonIgnore
+    
     @OneToOne(mappedBy = "prontuario")
     private Paciente paciente;
 

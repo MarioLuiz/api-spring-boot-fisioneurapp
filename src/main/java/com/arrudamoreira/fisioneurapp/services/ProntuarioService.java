@@ -3,6 +3,9 @@ package com.arrudamoreira.fisioneurapp.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,5 +49,11 @@ public class ProntuarioService {
 	private void atualizandoProntuarioPaciente(Prontuario prontuario) {
 		Paciente paciente = pacienteService.find(prontuario.getPaciente().getId());
 		paciente.setProntuario(prontuario);
+	}
+	
+	public Page<Prontuario> findPagePorNomePaciente(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		nomePesquisado = "%" + nomePesquisado + "%";
+		return repo.findByPacienteNomeLike(nomePesquisado,pageRequest);
 	}
 }
