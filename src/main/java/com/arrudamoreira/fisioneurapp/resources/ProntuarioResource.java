@@ -1,12 +1,6 @@
 package com.arrudamoreira.fisioneurapp.resources;
 
 
-import com.arrudamoreira.fisioneurapp.domain.Paciente;
-import com.arrudamoreira.fisioneurapp.domain.Prontuario;
-import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
-import com.arrudamoreira.fisioneurapp.dto.ProntuarioNewDTO;
-import com.arrudamoreira.fisioneurapp.services.ProntuarioService;
-
 import java.net.URI;
 import java.util.List;
 
@@ -21,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.arrudamoreira.fisioneurapp.domain.Prontuario;
+import com.arrudamoreira.fisioneurapp.dto.ProntuarioNewDTO;
+import com.arrudamoreira.fisioneurapp.services.ProntuarioService;
 
 /**
  *
