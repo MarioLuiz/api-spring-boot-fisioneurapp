@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.dto.ProntuarioNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.ProntuarioUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.ProntuarioService;
 
 /**
@@ -44,6 +45,13 @@ public class ProntuarioResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(prontuario.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+    
+    @RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ProntuarioUpdateDTO objDto) {
+		Prontuario prontuario = service.fromUpdateDTO(objDto);
+		prontuario = service.update(prontuario);
+		return ResponseEntity.noContent().build();
 	}
     
     @RequestMapping(value = "/page", method = RequestMethod.GET)

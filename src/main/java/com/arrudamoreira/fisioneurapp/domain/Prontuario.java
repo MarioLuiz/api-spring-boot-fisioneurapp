@@ -21,88 +21,94 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 public class Prontuario implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private Integer numero;
+	private Integer numero;
 
-    private String cid;
-    
-    private String cif;
+	private String cid;
 
-    private Date dataCriacao;
+	private String cif;
 
-    private String observacao;
+	private Date dataCriacao;
 
-    
-    @OneToOne(mappedBy = "prontuario")
-    private Paciente paciente;
+	private String observacao;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "prontuario")
-    private List<Avaliacao> avaliacoes = new ArrayList<>();
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "prontuario")
-    private List<EvolucaoClinica> evolucoesClinicas = new ArrayList<>();
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "prontuario")
-    private List<Exame> exames = new ArrayList<>();
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "prontuario")
-    private List<Encaminhamento> encaminhamentos = new ArrayList<>();
+	@OneToOne(mappedBy = "prontuario")
+	private Paciente paciente;
 
-    public Prontuario() {
-    }
+	@JsonIgnore
+	@OneToMany(mappedBy = "prontuario")
+	private List<Avaliacao> avaliacoes = new ArrayList<>();
 
-    public Prontuario(Long id, Integer numero, String cid, Date dataCriacao, String observacao) {
-        this.id = id;
-        this.numero = numero;
-        this.cid = cid;
-        this.dataCriacao = dataCriacao;
-        this.observacao = observacao;
-    }
-    
-    public Prontuario(Long id, Integer numero, String cid,String cif, String observacao, Paciente paciente) {
-        this.id = id;
-        this.numero = numero;
-        this.cid = cid;
-        this.cif = cif;
-        this.dataCriacao = new Date();
-        this.observacao = observacao;
-        this.paciente = paciente;
-    }
+	@JsonIgnore
+	@OneToMany(mappedBy = "prontuario")
+	private List<EvolucaoClinica> evolucoesClinicas = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+	@JsonIgnore
+	@OneToMany(mappedBy = "prontuario")
+	private List<Exame> exames = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@JsonIgnore
+	@OneToMany(mappedBy = "prontuario")
+	private List<Encaminhamento> encaminhamentos = new ArrayList<>();
 
-    public Integer getNumero() {
-        return numero;
-    }
+	public Prontuario() {
+	}
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
+	public Prontuario(Long id, Integer numero, String cid, Date dataCriacao, String observacao) {
+		this.id = id;
+		this.numero = numero;
+		this.cid = cid;
+		this.dataCriacao = dataCriacao;
+		this.observacao = observacao;
+	}
 
-    public String getCid() {
-        return cid;
-    }
+	public Prontuario(Long id, Integer numero, String cid, String cif, String observacao, Paciente paciente) {
+		this.id = id;
+		this.numero = numero;
+		this.cid = cid;
+		this.cif = cif;
+		this.dataCriacao = new Date();
+		this.observacao = observacao;
+		this.paciente = paciente;
+	}
 
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
+	public Prontuario(Long id, String cid, String cif, String observacao) {
+		this.id = id;
+		this.cid = cid;
+		this.cif = cif;
+		this.observacao = observacao;
+	}
 
-    public String getCif() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+
+	public String getCif() {
 		return cif;
 	}
 
@@ -111,83 +117,83 @@ public class Prontuario implements Serializable {
 	}
 
 	public Date getDataCriacao() {
-        return dataCriacao;
-    }
+		return dataCriacao;
+	}
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
+	public Paciente getPaciente() {
+		return paciente;
+	}
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 
-    public List<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
-    }
+	public List<Avaliacao> getAvaliacoes() {
+		return avaliacoes;
+	}
 
-    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
+	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
 
-    public List<EvolucaoClinica> getEvolucoesClinicas() {
-        return evolucoesClinicas;
-    }
+	public List<EvolucaoClinica> getEvolucoesClinicas() {
+		return evolucoesClinicas;
+	}
 
-    public void setEvolucoesClinicas(List<EvolucaoClinica> evolucoesClinicas) {
-        this.evolucoesClinicas = evolucoesClinicas;
-    }
+	public void setEvolucoesClinicas(List<EvolucaoClinica> evolucoesClinicas) {
+		this.evolucoesClinicas = evolucoesClinicas;
+	}
 
-    public List<Exame> getExames() {
-        return exames;
-    }
+	public List<Exame> getExames() {
+		return exames;
+	}
 
-    public void setExames(List<Exame> exames) {
-        this.exames = exames;
-    }
+	public void setExames(List<Exame> exames) {
+		this.exames = exames;
+	}
 
-    public List<Encaminhamento> getEncaminhamentos() {
-        return encaminhamentos;
-    }
+	public List<Encaminhamento> getEncaminhamentos() {
+		return encaminhamentos;
+	}
 
-    public void setEncaminhamentos(List<Encaminhamento> encaminhamentos) {
-        this.encaminhamentos = encaminhamentos;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
+	public void setEncaminhamentos(List<Encaminhamento> encaminhamentos) {
+		this.encaminhamentos = encaminhamentos;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Prontuario other = (Prontuario) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 23 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Prontuario other = (Prontuario) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
 }
