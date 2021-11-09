@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.arrudamoreira.fisioneurapp.domain.Atendimento;
 import com.arrudamoreira.fisioneurapp.domain.Avaliacao;
 import com.arrudamoreira.fisioneurapp.domain.Encaminhamento;
 import com.arrudamoreira.fisioneurapp.domain.Endereco;
@@ -17,6 +18,7 @@ import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
+import com.arrudamoreira.fisioneurapp.repositories.AtendimentoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.AvaliacaoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EncaminhamentoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.EnderecoRepository;
@@ -59,6 +61,9 @@ public class DBService {
 
 	@Autowired
 	private EncaminhamentoRepository encaminhamentoRepository;
+	
+	@Autowired
+	private AtendimentoRepository atendimentoRepository;
 
 	public void intanciateTestDatabase() throws ParseException {
 
@@ -150,13 +155,13 @@ public class DBService {
 				"Dor nas costas", "Tratar a dor nas costas do paciente");
 
 		EvolucaoClinica evo1 = new EvolucaoClinica(null, sdf.parse("11/07/2020 07:22"), "Conciente e disposto",
-				"Foi realizado estimulo dos menbros inferiores e da lombar do paciente");
+				"Foi realizado estimulo dos membros inferiores e da lombar do paciente");
 		EvolucaoClinica evo2 = new EvolucaoClinica(null, sdf.parse("21/08/2020 13:14"), "Conciente e disposto",
-				"Foi realizado estimulo dos menbros superiores e da pescoço do paciente");
+				"Foi realizado estimulo dos membros superiores e da pescoço do paciente");
 		EvolucaoClinica evo3 = new EvolucaoClinica(null, sdf.parse("15/09/2020 18:01"), "Conciente e disposto",
-				"Foi realizado estimulo dos menbros inferiores e da ombros do paciente");
+				"Foi realizado estimulo dos membros inferiores e da ombros do paciente");
 		EvolucaoClinica evo4 = new EvolucaoClinica(null, sdf.parse("07/10/2020 15:18"), "Conciente e disposto",
-				"Foi realizado estimulo dos menbros superiores e da costas do paciente");
+				"Foi realizado estimulo dos membros superiores e da costas do paciente");
 
 		Exame ex1 = new Exame(null, "Raio-x coluna", sdf.parse("21/08/2020 18:35"), "Exame em perfeitas condições",
 				"C5 e C6 trincadas");
@@ -175,6 +180,15 @@ public class DBService {
 				"Encaminhado para especialista Ortopédista");
 		Encaminhamento ec4 = new Encaminhamento(null, "Oncológica", sdf.parse("04/11/2020 09:12"),
 				"Encaminhado para especialista em Oncologia");
+		
+		Atendimento ate1 = new Atendimento(null, sdf.parse("11/07/2020 07:22"), "Conciente e disposto",
+				"Foi realizado estimulo dos membros inferiores e da lombar do paciente");
+		Atendimento ate2 = new Atendimento(null, sdf.parse("21/08/2020 13:14"), "Conciente e disposto",
+				"Foi realizado estimulo dos membros superiores e da pescoço do paciente");
+		Atendimento ate3 = new Atendimento(null, sdf.parse("15/09/2020 18:01"), "Conciente e disposto",
+				"Foi realizado estimulo dos membros inferiores e da ombros do paciente");
+		Atendimento ate4 = new Atendimento(null, sdf.parse("07/10/2020 15:18"), "Conciente e disposto",
+				"Foi realizado estimulo dos membros superiores e da costas do paciente");
 
 		fisio1.getPacientes().addAll(Arrays.asList(pac1, pac2));
 		fisio2.getPacientes().addAll(Arrays.asList(pac3, pac4));
@@ -243,6 +257,16 @@ public class DBService {
 		ec2.setProntuario(pront2);
 		ec3.setProntuario(pront3);
 		ec4.setProntuario(pront4);
+		
+		ate1.setProntuario(pront1);
+		ate2.setProntuario(pront2);
+		ate3.setProntuario(pront3);
+		ate4.setProntuario(pront4);
+		
+		pront1.getAtendimentos().add(ate1);
+		pront2.getAtendimentos().add(ate2);
+		pront3.getAtendimentos().add(ate3);
+		pront4.getAtendimentos().add(ate4);
 
 		fisioterapeutaRepository.saveAll(Arrays.asList(fisio1, fisio2));
 		pacienteRepository.saveAll(Arrays.asList(pac1, pac2, pac3, pac4, pac5, pac6, pac7, pac8, pac9, pac10, pac11,
@@ -253,6 +277,7 @@ public class DBService {
 		evolucaoClinicaRepository.saveAll(Arrays.asList(evo1, evo2, evo3, evo4));
 		exameRepository.saveAll(Arrays.asList(ex1, ex2, ex3, ex4));
 		encaminhamentoRepository.saveAll(Arrays.asList(ec1, ec2, ec3, ec4));
+		atendimentoRepository.saveAll(Arrays.asList(ate1,ate2,ate3,ate4));
 
 	}
 }

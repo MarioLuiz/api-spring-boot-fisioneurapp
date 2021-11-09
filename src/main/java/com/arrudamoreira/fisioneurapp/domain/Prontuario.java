@@ -39,6 +39,10 @@ public class Prontuario implements Serializable {
 
 	@OneToOne(mappedBy = "prontuario")
 	private Paciente paciente;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "prontuario")
+	private List<Atendimento> atendimentos = new ArrayList<>();
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "prontuario")
@@ -138,6 +142,14 @@ public class Prontuario implements Serializable {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
+	}
+
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+	public void setAtendimentos(List<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
 	}
 
 	public List<Avaliacao> getAvaliacoes() {
