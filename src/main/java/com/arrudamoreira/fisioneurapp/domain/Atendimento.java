@@ -35,6 +35,10 @@ public class Atendimento implements Serializable {
     @ManyToOne
     @JoinColumn(name = "prontuario_id")
     private Prontuario prontuario;
+    
+    @ManyToOne
+    @JoinColumn(name = "fisioterapeuta_id")
+    private Fisioterapeuta fisioterapeuta;
 
 	public Atendimento() {
 	}
@@ -90,6 +94,14 @@ public class Atendimento implements Serializable {
 
 	public void setProntuario(Prontuario prontuario) {
 		this.prontuario = prontuario;
+	}
+
+	public Fisioterapeuta getFisioterapeuta() {
+		return fisioterapeuta;
+	}
+
+	public void setFisioterapeuta(Fisioterapeuta fisioterapeuta) {
+		this.fisioterapeuta = fisioterapeuta;
 	}
 
 	@Override

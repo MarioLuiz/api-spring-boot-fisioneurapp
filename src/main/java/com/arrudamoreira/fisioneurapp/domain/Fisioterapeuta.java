@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.arrudamoreira.fisioneurapp.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -54,6 +55,10 @@ public class Fisioterapeuta implements Serializable {
 	private List<Paciente> pacientes = new ArrayList<>();
 	
 	private Date dataNascimento;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "fisioterapeuta")
+	private List<Atendimento> atendimentos = new ArrayList<>();
 
 	public Fisioterapeuta() {
 		addPerfil(Perfil.CLIENTE_FISIO);
@@ -153,6 +158,14 @@ public class Fisioterapeuta implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+	public void setAtendimentos(List<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
+	}
+
 	private Date dataConvert(String dataString) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataFormatado = null;
