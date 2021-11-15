@@ -55,6 +55,14 @@ public class Atendimento implements Serializable {
 		this.estadoPaciente = estadoPaciente;
 		this.relatoAtendimento = relatoAtendimento;
 	}
+	
+	public Atendimento(Date data, String estadoPaciente, String relatoAtendimento, Prontuario prontuario, Fisioterapeuta fisioterapeuta) {
+		this.data = data;
+		this.estadoPaciente = estadoPaciente;
+		this.relatoAtendimento = relatoAtendimento;
+		this.prontuario = prontuario;
+		this.fisioterapeuta = fisioterapeuta;
+	}
 
 	public Long getId() {
 		return id;
