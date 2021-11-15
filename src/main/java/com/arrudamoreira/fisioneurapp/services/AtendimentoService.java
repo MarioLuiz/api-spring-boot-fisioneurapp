@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,5 +71,11 @@ public class AtendimentoService {
 		Atendimento atendimento = new Atendimento(data, objDto.getEstado(), objDto.getRelato(), prontuario, fisio);
 
 		return atendimento;
+	}
+	
+	public Page<Atendimento> findPagePorNomePaciente(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		nomePesquisado = "%" + nomePesquisado + "%";
+		return repo.findByPacienteNomeLike(nomePesquisado,pageRequest);
 	}
 }
