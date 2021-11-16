@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -32,7 +33,8 @@ public class Prontuario implements Serializable {
 	private String cid;
 
 	private String cif;
-
+	
+	@JsonFormat(pattern = "dd/MM/yyyy hh:mm")
 	private Date dataCriacao;
 
 	private String observacao;
