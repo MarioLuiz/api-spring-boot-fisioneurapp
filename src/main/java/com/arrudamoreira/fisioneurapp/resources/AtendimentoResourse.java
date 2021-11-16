@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arrudamoreira.fisioneurapp.domain.Atendimento;
-import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.dto.AtendimentoNewDTO;
-import com.arrudamoreira.fisioneurapp.dto.ProntuarioNewDTO;
 import com.arrudamoreira.fisioneurapp.services.AtendimentoService;
 
 /**

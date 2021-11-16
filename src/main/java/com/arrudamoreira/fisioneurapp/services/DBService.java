@@ -182,13 +182,13 @@ public class DBService {
 				"Encaminhado para especialista em Oncologia");
 		
 		Atendimento ate1 = new Atendimento(null, sdf.parse("11/07/2020 07:22"), "Conciente e disposto",
-				"Foi realizado estimulo dos membros inferiores e da lombar do paciente");
+				"Foi realizado estimulo dos membros inferiores e da lombar do paciente" ,pront1,fisio1);
 		Atendimento ate2 = new Atendimento(null, sdf.parse("21/08/2020 13:14"), "Conciente e disposto",
-				"Foi realizado estimulo dos membros superiores e da pescoço do paciente");
+				"Foi realizado estimulo dos membros superiores e da pescoço do paciente", pront2,fisio1);
 		Atendimento ate3 = new Atendimento(null, sdf.parse("15/09/2020 18:01"), "Conciente e disposto",
-				"Foi realizado estimulo dos membros inferiores e da ombros do paciente");
+				"Foi realizado estimulo dos membros inferiores e da ombros do paciente", pront3,fisio2);
 		Atendimento ate4 = new Atendimento(null, sdf.parse("07/10/2020 15:18"), "Conciente e disposto",
-				"Foi realizado estimulo dos membros superiores e da costas do paciente");
+				"Foi realizado estimulo dos membros superiores e da costas do paciente", pront4,fisio2);
 
 		fisio1.getPacientes().addAll(Arrays.asList(pac1, pac2));
 		fisio2.getPacientes().addAll(Arrays.asList(pac3, pac4));
