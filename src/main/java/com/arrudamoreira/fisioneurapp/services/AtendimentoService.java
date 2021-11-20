@@ -17,6 +17,7 @@ import com.arrudamoreira.fisioneurapp.domain.Atendimento;
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Prontuario;
 import com.arrudamoreira.fisioneurapp.dto.AtendimentoNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.AtendimentoUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.AtendimentoRepository;
 import com.arrudamoreira.fisioneurapp.services.exceptions.CustomValidationException;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
@@ -55,6 +56,19 @@ public class AtendimentoService {
 		obj = repo.save(obj);
 		return obj;
 	}
+	
+	public Atendimento update(Atendimento obj) {
+		Atendimento newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Atendimento newObj, Atendimento obj) {
+		newObj.setProntuario(obj.getProntuario());
+		newObj.setData(obj.getData());
+		newObj.setEstadoPaciente(obj.getEstadoPaciente());
+		newObj.setRelatoAtendimento(obj.getRelatoAtendimento());
+	}
 
 	public Atendimento fromNewDTO(AtendimentoNewDTO objDto) {
 		Date data = null;
@@ -70,6 +84,23 @@ public class AtendimentoService {
 
 		Atendimento atendimento = new Atendimento(data, objDto.getEstado(), objDto.getRelato(), prontuario, fisio);
 
+		return atendimento;
+	}
+	
+	public Atendimento fromUpdateDTO(AtendimentoUpdateDTO objDto) {
+		Date data = null;
+		try {
+			data = sdf.parse(objDto.getData()+" "+objDto.getHora());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			throw new CustomValidationException("Erro ao converter data e hora: " + Atendimento.class.getName() + " ", e);
+		}
+		
+		Prontuario prontuario = pacienteService.find(objDto.getPacienteId()).getProntuario();
+		Fisioterapeuta fisio = fisioterapeutaService.find(objDto.getFisioterapeutaId());
+
+		Atendimento atendimento = new Atendimento(objDto.getId(),data, objDto.getEstado(), objDto.getRelato(), prontuario, fisio);
+		
 		return atendimento;
 	}
 	

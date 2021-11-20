@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arrudamoreira.fisioneurapp.domain.Atendimento;
 import com.arrudamoreira.fisioneurapp.dto.AtendimentoNewDTO;
+import com.arrudamoreira.fisioneurapp.dto.AtendimentoUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.AtendimentoService;
 
 /**
@@ -43,6 +44,13 @@ public class AtendimentoResourse {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(atendimento.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+    
+    @RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody AtendimentoUpdateDTO objDto) {
+		Atendimento atendimento = service.fromUpdateDTO(objDto);
+		atendimento = service.update(atendimento);
+		return ResponseEntity.noContent().build();
 	}
     
     @RequestMapping(value = "/page", method = RequestMethod.GET)
