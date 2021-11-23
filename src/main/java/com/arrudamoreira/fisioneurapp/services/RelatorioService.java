@@ -25,7 +25,7 @@ public class RelatorioService {
 	@Autowired
 	private AtendimentoRepository atendimentoRepository;
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); // dd/MM/yyyy HH:mm:ss.SSS
 
 	public Page<Atendimento> relatorioAtendimentos(FiltroRelatorioAtendimentoDTO obj, Integer page,
 			Integer linesPerPage, String orderBy, String direction) {

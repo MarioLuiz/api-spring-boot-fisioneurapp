@@ -27,7 +27,7 @@ public class RelatorioResourse {
 	private RelatorioService service;
 	
 	
-	@RequestMapping(value = "/atendimentos", method = RequestMethod.GET)
+	@RequestMapping(value = "/atendimentos", method = RequestMethod.POST)
 	public ResponseEntity<Page<Atendimento>> relatorioAtendimentos(@Valid @RequestBody FiltroRelatorioAtendimentoDTO objDto,
 			@RequestParam(value="page", defaultValue = "0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue = "10000") Integer linesPerPage, 
