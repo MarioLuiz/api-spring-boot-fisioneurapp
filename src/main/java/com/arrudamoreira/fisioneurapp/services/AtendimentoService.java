@@ -93,7 +93,7 @@ public class AtendimentoService {
 			data = sdf.parse(objDto.getData()+" "+objDto.getHora());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			throw new CustomValidationException("Erro ao converter data e hora: " + Atendimento.class.getName() + " ", e);
+			throw new CustomValidationException("Erro ao converter data e hora: " + AtendimentoService.class.getName() + " ", e);
 		}
 		
 		Prontuario prontuario = pacienteService.find(objDto.getPacienteId()).getProntuario();
