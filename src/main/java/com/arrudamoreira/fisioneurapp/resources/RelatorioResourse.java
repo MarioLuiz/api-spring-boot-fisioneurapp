@@ -26,12 +26,11 @@ public class RelatorioResourse {
 	@Autowired
 	private RelatorioService service;
 	
-	
 	@RequestMapping(value = "/atendimentos", method = RequestMethod.POST)
 	public ResponseEntity<Page<Atendimento>> relatorioAtendimentos(@Valid @RequestBody FiltroRelatorioAtendimentoDTO objDto,
 			@RequestParam(value="page", defaultValue = "0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue = "10000") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue = "id") String orderBy,
+			@RequestParam(value="orderBy", defaultValue = "data") String orderBy,
 			@RequestParam(value="direction", defaultValue = "ASC") String direction) {
 		Page<Atendimento> listAtendimentos = service.relatorioAtendimentos(objDto, page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok(listAtendimentos);
