@@ -3,6 +3,7 @@ package com.arrudamoreira.fisioneurapp.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -25,6 +26,9 @@ public class PacienteNewDTO implements Serializable {
 
 	@NotEmpty(message = "Preenchimento Obrigatório da data")
 	private String dataNascimento;
+	
+	@NotNull(message = "Preenchimento obrigatório da liberação de visualização do atendimento")
+	private Boolean podeVisualizarSeuAtendimento;
 
 	public PacienteNewDTO() {
 	}
@@ -75,5 +79,13 @@ public class PacienteNewDTO implements Serializable {
 
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public Boolean getPodeVisualizarSeuAtendimento() {
+		return podeVisualizarSeuAtendimento;
+	}
+
+	public void setPodeVisualizarSeuAtendimento(Boolean podeVisualizarSeuAtendimento) {
+		this.podeVisualizarSeuAtendimento = podeVisualizarSeuAtendimento;
 	}
 }

@@ -99,45 +99,45 @@ public class DBService {
 		fisio2.addPerfil(Perfil.ADMIN_FISIO);
 
 		Paciente pac1 = new Paciente(null, sdf.parse("30/09/2019 10:44"), "08987934871", "67992857488", "Luiz Carlos",
-				"1992-06-17", "luiz@gmail.com");
+				"1992-06-17", "luiz@gmail.com", true);
 		Paciente pac2 = new Paciente(null, sdf.parse("12/08/2018 00:12"), "08987933872", "67992857488", "Mario Luiz",
-				"1992-02-24", "marioluiz@gmail.com");
+				"1992-02-24", "marioluiz@gmail.com", true);
 		Paciente pac3 = new Paciente(null, sdf.parse("11/12/2019 05:33"), "08987988873", "67992857488",
-				"Revihery Luiza", "1990-04-12", "reviheryluiza@gmail.com");
+				"Revihery Luiza", "1990-04-12", "reviheryluiza@gmail.com", true);
 		Paciente pac4 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "08999935874", "67992857488",
-				"Beatriz Almeida", "1963-11-11", "beatrizalmeida@gmail.com");
+				"Beatriz Almeida", "1963-11-11", "beatrizalmeida@gmail.com", true);
 		Paciente pac5 = new Paciente(null, sdf.parse("11/12/2019 09:33"), "09287988876", "67992857488",
-				"Troiano Matheus Dangelo", "1989-04-07", "matheus@gmail.com");
+				"Troiano Matheus Dangelo", "1989-04-07", "matheus@gmail.com", true);
 		Paciente pac6 = new Paciente(null, sdf.parse("01/07/2020 09:19"), "09399935877", "67992857488",
-				"Rui Carlos Fernando Fusca", "1981-11-05", "carlosfernando@gmail.com");
+				"Rui Carlos Fernando Fusca", "1981-11-05", "carlosfernando@gmail.com", true);
 		Paciente pac7 = new Paciente(null, sdf.parse("11/10/2021 08:33"), "09487988876", "67992857488",
-				"Dennys Carlos Ricardo", "1982-09-04", "dennys@gmail.com");
+				"Dennys Carlos Ricardo", "1982-09-04", "dennys@gmail.com", true);
 		Paciente pac8 = new Paciente(null, sdf.parse("01/09/2020 07:19"), "09599935877", "67992857488",
-				"Carlos Fernando", "1983-11-18", "carlosfernando1@gmail.com");
+				"Carlos Fernando", "1983-11-18", "carlosfernando1@gmail.com", true);
 		Paciente pac9 = new Paciente(null, sdf.parse("11/08/2019 06:33"), "09687988876", "67992857488",
-				"Marcelo Luiz Oliveira", "1984-08-03", "marcelo@gmail.com");
+				"Marcelo Luiz Oliveira", "1984-08-03", "marcelo@gmail.com", true);
 		Paciente pac10 = new Paciente(null, sdf.parse("12/07/2020 10:19"), "01177935877", "67992857488",
-				"Carla Roberta de Souza", "1985-11-30", "carla@gmail.com");
+				"Carla Roberta de Souza", "1985-11-30", "carla@gmail.com", true);
 		Paciente pac11 = new Paciente(null, sdf.parse("13/06/2019 11:33"), "08987988876", "67992857488",
-				"Nenna da Silva", "1986-04-28", "nenna@gmail.com");
+				"Nenna da Silva", "1986-04-28", "nenna@gmail.com", false);
 		Paciente pac12 = new Paciente(null, sdf.parse("14/03/2020 12:19"), "08999988877", "67992857488",
-				"Rudilene Moreira", "1987-10-23", "rudilene@gmail.com");
+				"Rudilene Moreira", "1987-10-23", "rudilene@gmail.com", false);
 		Paciente pac13 = new Paciente(null, sdf.parse("15/02/2019 13:33"), "08987999876", "67992857488",
-				"Raizen Amoedo", "1988-01-19", "raizen@gmail.com");
+				"Raizen Amoedo", "1988-01-19", "raizen@gmail.com", false);
 		Paciente pac14 = new Paciente(null, sdf.parse("16/01/2020 14:19"), "08999935877", "67992857488",
-				"Luis Inacio Lula", "1989-04-15", "luis@gmail.com");
+				"Luis Inacio Lula", "1989-04-15", "luis@gmail.com", false);
 		Paciente pac15 = new Paciente(null, sdf.parse("17/04/2020 15:19"), "08911935877", "67992857488",
-				"Adolpho Carlos", "1991-06-24", "adopho@gmail.com");
+				"Adolpho Carlos", "1991-06-24", "adopho@gmail.com", false);
 		Paciente pac16 = new Paciente(null, sdf.parse("18/05/2019 16:33"), "08922988876", "67992857488",
-				"Andrio Algusto Luiz", "1990-04-17", "andrio@gmail.com");
+				"Andrio Algusto Luiz", "1990-04-17", "andrio@gmail.com", false);
 		Paciente pac17 = new Paciente(null, sdf.parse("19/06/2020 17:19"), "08933935877", "67992857488",
-				"Lorena Martins", "1991-12-11", "lorena@gmail.com");
+				"Lorena Martins", "1991-12-11", "lorena@gmail.com", false);
 		Paciente pac18 = new Paciente(null, sdf.parse("20/03/2019 07:33"), "08944988876", "67992857488",
-				"Reviane Chaves Amorim", "1992-07-03", "reviane@gmail.com");
+				"Reviane Chaves Amorim", "1992-07-03", "reviane@gmail.com", false);
 		Paciente pac19 = new Paciente(null, sdf.parse("21/04/2020 09:19"), "08955935877", "67992857488",
-				"Thor Oliveira Arruda", "1993-02-02", "thor@gmail.com");
+				"Thor Oliveira Arruda", "1993-02-02", "thor@gmail.com", false);
 		Paciente pac20 = new Paciente(null, sdf.parse("22/05/2020 08:19"), "08966935877", "67992857488",
-				"Baruk Adamastor Pedra", "1994-09-01", "baruk@gmail.com");
+				"Baruk Adamastor Pedra", "1994-09-01", "baruk@gmail.com", false);
 
 		Endereco ende1 = new Endereco(null, 79114785, 138, "Rua Belmonte", "Vila Célia", pac1);
 		Endereco ende2 = new Endereco(null, 52114785, 1500, "Avenida Mato Grosso", "Centro", pac2);

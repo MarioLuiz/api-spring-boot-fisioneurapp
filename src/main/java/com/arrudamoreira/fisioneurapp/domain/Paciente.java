@@ -50,6 +50,8 @@ public class Paciente implements Serializable {
 	private Date dataNascimento;
 
 	private String email;
+	
+	private Boolean podeVisualizarSeuAtendimento;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
@@ -64,7 +66,7 @@ public class Paciente implements Serializable {
 	}
 
 	public Paciente(Long id, Date dataCadastro, String cpf, String telefone, String nome, String dataNascimento,
-			String email) {
+			String email, Boolean podeVisualizarSeuAtendimento) {
 		this.id = id;
 		this.dataCadastro = dataCadastro;
 		this.cpf = cpf;
@@ -72,6 +74,7 @@ public class Paciente implements Serializable {
 		this.nome = nome;
 		this.dataNascimento = dataConvert(dataNascimento);
 		this.email = email;
+		this.podeVisualizarSeuAtendimento = podeVisualizarSeuAtendimento;
 	}
 
 	public Long getId() {
@@ -152,6 +155,14 @@ public class Paciente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getPodeVisualizarSeuAtendimento() {
+		return podeVisualizarSeuAtendimento;
+	}
+
+	public void setPodeVisualizarSeuAtendimento(Boolean podeVisualizarSeuAtendimento) {
+		this.podeVisualizarSeuAtendimento = podeVisualizarSeuAtendimento;
 	}
 
 	private Date dataConvert(String dataString) {

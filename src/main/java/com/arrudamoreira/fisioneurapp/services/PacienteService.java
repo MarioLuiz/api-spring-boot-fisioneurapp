@@ -56,7 +56,7 @@ public class PacienteService {
 	public Paciente fromDTO(PacienteNewDTO objDto) {
 
 		Paciente paciente = new Paciente(null, new Date(), objDto.getCpf(), objDto.getTelefone(), objDto.getNome(),
-				objDto.getDataNascimento(), objDto.getEmail());
+				objDto.getDataNascimento(), objDto.getEmail(), objDto.getPodeVisualizarSeuAtendimento());
 
 		atualizandoPacienteFisioterapeuta(objDto.getFisioterapeutaId(), paciente);
 
@@ -66,7 +66,7 @@ public class PacienteService {
 	public Paciente fromUpdateDTO(PacienteUpdateDTO objDto) {
 		
 		Paciente paciente = new Paciente(objDto.getId(), new Date(), objDto.getCpf(), objDto.getTelefone(), objDto.getNome(),
-				objDto.getDataNascimento(), objDto.getEmail());
+				objDto.getDataNascimento(), objDto.getEmail(), objDto.getPodeVisualizarSeuAtendimento());
 
 		atualizandoPacienteFisioterapeuta(objDto.getFisioterapeutaId(), paciente);
 
@@ -85,6 +85,7 @@ public class PacienteService {
 		newObj.setTelefone(obj.getTelefone());
 		newObj.setCpf(obj.getCpf());
 		newObj.setDataNascimento(obj.getDataNascimento());
+		newObj.setPodeVisualizarSeuAtendimento(obj.getPodeVisualizarSeuAtendimento());
 	}
 	
 	public void delete(Long id) {
