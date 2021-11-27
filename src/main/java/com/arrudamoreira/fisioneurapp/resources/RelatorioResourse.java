@@ -42,7 +42,7 @@ public class RelatorioResourse {
 	public ResponseEntity<Page<Paciente>> relatorioPacientes(@Valid @RequestBody FiltroRelatorioPacienteDTO objDto,
 			@RequestParam(value="page", defaultValue = "0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue = "10000") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue = "dataNascimento") String orderBy,
+			@RequestParam(value="orderBy", defaultValue = "nome") String orderBy,
 			@RequestParam(value="direction", defaultValue = "ASC") String direction) {
 		Page<Paciente> listPacientes= service.relatorioPacientes(objDto, page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok(listPacientes);

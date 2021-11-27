@@ -15,9 +15,9 @@ public class FiltroRelatorioPacienteDTO implements Serializable {
 
 	private String pacienteNome;
 	
-//	private String pacienteCid;
-//	
-//	private String pacienteCif;
+	private String pacienteCid;
+	
+	private String pacienteCif;
 
 	public String getPacienteDataNascimentoInicial() {
 		return pacienteDataNascimentoInicial;
@@ -59,19 +59,19 @@ public class FiltroRelatorioPacienteDTO implements Serializable {
 		this.pacienteNome = pacienteNome;
 	}
 
-//	public String getPacienteCid() {
-//		return pacienteCid;
-//	}
-//
-//	public void setPacienteCid(String pacienteCid) {
-//		this.pacienteCid = pacienteCid;
-//	}
-//
-//	public String getPacienteCif() {
-//		return pacienteCif;
-//	}
-//
-//	public void setPacienteCif(String pacienteCif) {
-//		this.pacienteCif = pacienteCif;
-//	}
+	public String getPacienteCid() {
+		return pacienteCid;
+	}
+
+	public void setPacienteCid(String pacienteCid) {
+		this.pacienteCid = pacienteCid;
+	}
+
+	public String getPacienteCif() {
+		return pacienteCif;
+	}
+
+	public void setPacienteCif(String pacienteCif) {
+		this.pacienteCif = pacienteCif;
+	}
 }

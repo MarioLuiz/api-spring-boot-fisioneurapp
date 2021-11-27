@@ -112,7 +112,7 @@ public class RelatorioService {
 
 		Page<Paciente> listaPacientePaginada = pacienteRepository.findRelatorioPorDatasNomePaciente(
 				dataNascimentoInicial, dataNascimentoFinal, obj.getPacienteNome(), dataCadastroInicial,
-				dataCadastrotoFinal, pageRequest);
+				dataCadastrotoFinal, pageRequest); //, obj.getPacienteCid(), obj.getPacienteCif()
 		return listaPacientePaginada;
 	}
 
