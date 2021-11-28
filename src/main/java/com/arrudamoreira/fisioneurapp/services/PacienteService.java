@@ -40,6 +40,10 @@ public class PacienteService {
 		return repo.findById(id);
 	}
 	
+	public Optional<Paciente> findByCpf(String cpf) {
+		return repo.findByCpf(cpf);
+	}
+	
 	public Paciente find(Long id) {
 		Optional<Paciente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(

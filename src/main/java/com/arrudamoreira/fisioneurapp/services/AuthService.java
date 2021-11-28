@@ -1,5 +1,6 @@
 package com.arrudamoreira.fisioneurapp.services;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
+import com.arrudamoreira.fisioneurapp.domain.Paciente;
+import com.arrudamoreira.fisioneurapp.domain.Prontuario;
+import com.arrudamoreira.fisioneurapp.dto.PacienteLoginDTO;
 import com.arrudamoreira.fisioneurapp.repositories.FisioterapeutaRepository;
 import com.arrudamoreira.fisioneurapp.services.exceptions.ObjectNotFoundException;
 
@@ -15,6 +19,12 @@ public class AuthService {
 	
 	@Autowired
 	private FisioterapeutaRepository fisioterapeutaRepository;
+	
+	@Autowired
+	private PacienteService pacienteService;
+	
+	@Autowired
+	private ProntuarioService prontuarioService;
 	
 	@Autowired
 	private BCryptPasswordEncoder pe;
@@ -58,6 +68,26 @@ public class AuthService {
 			return (char) (rand.nextInt(26) + 65);
 		} else { // gera uma letra minuscula de A a Z
 			return (char) (rand.nextInt(26) + 97);
+		}
+	}
+	
+	public void autenticaPaciente(PacienteLoginDTO obj) {
+		Optional<Paciente> paciente = pacienteService.findByCpf(obj.getCpf());
+		paciente.orElseThrow(() -> new ObjectNotFoundException(
+				"Paciente não encontrado! cpf ou prontuario!"));
+		
+		Optional<Prontuario> prontuario = prontuarioService.findByNumero(obj.getNumeroProntuario());
+		prontuario.orElseThrow(() -> new ObjectNotFoundException(
+				"Paciente não encontrado! prontuario ou cpf!"));
+		
+		if(!prontuario.get().getPaciente().getCpf().equalsIgnoreCase(obj.getCpf()) ) {
+			throw new ObjectNotFoundException(
+				"Cpf ou Numero de prontuário não correspondem a base!");
+		}
+		
+		if(!prontuario.get().getPaciente().getPodeVisualizarSeuAtendimento()) {
+			throw new ObjectNotFoundException(
+					"Paciente não liberado para consultar atendimentos!");
 		}
 	}
 

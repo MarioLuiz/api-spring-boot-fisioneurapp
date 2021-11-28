@@ -34,6 +34,10 @@ public class ProntuarioService {
 		return repo.findAll();
 	}
 	
+	public Optional<Prontuario> findByNumero(Integer prontuario) {
+		return repo.findByNumero(prontuario);
+	}
+	
 	public Prontuario find(Long id) {
 		Optional<Prontuario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(

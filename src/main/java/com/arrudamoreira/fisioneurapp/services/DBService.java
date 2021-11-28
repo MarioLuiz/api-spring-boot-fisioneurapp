@@ -152,17 +152,17 @@ public class DBService {
 				"Paciente reclama de fortes dores na costas");
 		Prontuario pront4 = new Prontuario(null, 20177184, "H232", sdf.parse("17/04/2019 20:32"),
 				"Paciente reclama de fortes dores na perna");
-		Prontuario pront5 = new Prontuario(null, 20208251, "I9328", sdf.parse("03/01/2020 10:44"),
+		Prontuario pront5 = new Prontuario(null, 20208255, "I9328", sdf.parse("03/01/2020 10:44"),
 				"Paciente reclama de fortes dores na perna esquerda");
-		Prontuario pront6 = new Prontuario(null, 2019712, "V278", sdf.parse("01/07/2019 07:21"),
+		Prontuario pront6 = new Prontuario(null, 2019716, "V278", sdf.parse("01/07/2019 07:21"),
 				"Paciente com quadro de paralisia cerebral");
-		Prontuario pront7 = new Prontuario(null, 20186213, "T853", sdf.parse("21/06/2011 08:31"),
+		Prontuario pront7 = new Prontuario(null, 20186217, "T853", sdf.parse("21/06/2011 08:31"),
 				"Paciente paraplégico");
-		Prontuario pront8 = new Prontuario(null, 20177184, "I982", sdf.parse("17/11/2012 20:32"),
+		Prontuario pront8 = new Prontuario(null, 20177188, "I982", sdf.parse("17/11/2012 20:32"),
 				"Paciente tetraplégico");
-		Prontuario pront9 = new Prontuario(null, 20208251, "P215", sdf.parse("14/12/2015 10:44"),
+		Prontuario pront9 = new Prontuario(null, 20208259, "P215", sdf.parse("14/12/2015 10:44"),
 				"Paciente não possui perna esquerda");
-		Prontuario pront10 = new Prontuario(null, 2019712, "X127", sdf.parse("01/03/2013 07:21"),
+		Prontuario pront10 = new Prontuario(null, 20197110, "X127", sdf.parse("01/03/2013 07:21"),
 				"Paciente não consegue mexer os dedos da mão esquerda");
 
 		Avaliacao ava1 = new Avaliacao(null, sdf.parse("17/07/2017 20:32"), pac1.toString(),

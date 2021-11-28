@@ -26,6 +26,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 	Page<Paciente> findByNomeLikeAndProntuarioIsNotNull(String nome, Pageable pageable);
 
 	Optional<Paciente> findById(Long id);
+	
+	Optional<Paciente> findByCpf(String cpf);
 
 	@Query("SELECT p FROM Paciente p " 
 			+ "WHERE p.nome like :nomePaciente AND "

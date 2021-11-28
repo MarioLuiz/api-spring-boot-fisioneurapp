@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arrudamoreira.fisioneurapp.dto.EmailDTO;
+import com.arrudamoreira.fisioneurapp.dto.PacienteLoginDTO;
 import com.arrudamoreira.fisioneurapp.security.JWTUtil;
 import com.arrudamoreira.fisioneurapp.security.UserSS;
 import com.arrudamoreira.fisioneurapp.services.AuthService;
@@ -38,6 +39,12 @@ public class AuthResource {
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) {
 		service.sendNewPassword(objDto.getEmail());
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/paciente", method = RequestMethod.POST)
+	public ResponseEntity<Void> autenticaPaciente(@Valid @RequestBody PacienteLoginDTO objDto) {
+		service.autenticaPaciente(objDto);
 		return ResponseEntity.noContent().build();
 	}
 }
