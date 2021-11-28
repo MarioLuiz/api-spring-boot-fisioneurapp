@@ -15,6 +15,7 @@ import com.arrudamoreira.fisioneurapp.domain.Atendimento;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.dto.FiltroRelatorioAtendimentoDTO;
 import com.arrudamoreira.fisioneurapp.dto.FiltroRelatorioPacienteDTO;
+import com.arrudamoreira.fisioneurapp.dto.PacienteConsultaAtendimentoDTO;
 import com.arrudamoreira.fisioneurapp.services.RelatorioService;
 
 /**
@@ -46,5 +47,15 @@ public class RelatorioResourse {
 			@RequestParam(value="direction", defaultValue = "ASC") String direction) {
 		Page<Paciente> listPacientes= service.relatorioPacientes(objDto, page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok(listPacientes);
+	}
+	
+	@RequestMapping(value = "/atendimento-por-paciente", method = RequestMethod.POST)
+	public ResponseEntity<Page<Atendimento>> relatorioPacientes(@Valid @RequestBody PacienteConsultaAtendimentoDTO objDto,
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue = "10000") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue = "data") String orderBy,
+			@RequestParam(value="direction", defaultValue = "ASC") String direction) {
+		Page<Atendimento> listAtendimentos= service.atendimentosPorPacienteId(objDto, page, linesPerPage, orderBy, direction);
+		return ResponseEntity.ok(listAtendimentos);
 	}
 }

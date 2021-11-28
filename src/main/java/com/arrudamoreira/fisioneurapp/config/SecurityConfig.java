@@ -46,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String[] PUBLIC_MATCHERS_POST = { 
 			"/fisioterapeutas/**",
 			"/auth/forgot/**",
-			"/auth/paciente/**"
+			"/auth/paciente/**",
+			"/pacientes/paciente-consulta-atendimento/**",
+			"/relatorios/atendimento-por-paciente/**"
 	};
 
 	@Override

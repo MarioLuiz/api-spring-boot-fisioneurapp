@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
+import com.arrudamoreira.fisioneurapp.dto.PacienteLoginDTO;
 import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
 import com.arrudamoreira.fisioneurapp.dto.PacienteUpdateDTO;
 import com.arrudamoreira.fisioneurapp.services.PacienteService;
@@ -36,6 +37,12 @@ public class PacienteResource {
 	public ResponseEntity<List<Paciente>> findAll() {
 		List<Paciente> listPacientes = service.findAll();
 		return ResponseEntity.ok(listPacientes);
+	}
+	
+	@RequestMapping(value = "paciente-consulta-atendimento",method = RequestMethod.POST)
+	public ResponseEntity<Paciente> findByCpfNumeroProntuario(@Valid @RequestBody PacienteLoginDTO obj) {
+		Paciente paciente = service.findByCpfNumeroProntuario(obj);
+		return ResponseEntity.ok(paciente);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

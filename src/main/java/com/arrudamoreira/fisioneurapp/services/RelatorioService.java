@@ -14,6 +14,7 @@ import com.arrudamoreira.fisioneurapp.domain.Atendimento;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
 import com.arrudamoreira.fisioneurapp.dto.FiltroRelatorioAtendimentoDTO;
 import com.arrudamoreira.fisioneurapp.dto.FiltroRelatorioPacienteDTO;
+import com.arrudamoreira.fisioneurapp.dto.PacienteConsultaAtendimentoDTO;
 import com.arrudamoreira.fisioneurapp.repositories.AtendimentoRepository;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
 import com.arrudamoreira.fisioneurapp.services.exceptions.CustomValidationException;
@@ -32,6 +33,16 @@ public class RelatorioService {
 	private PacienteRepository pacienteRepository;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); // dd/MM/yyyy HH:mm:ss.SSS
+
+	public Page<Atendimento> atendimentosPorPacienteId(PacienteConsultaAtendimentoDTO obj, Integer page,
+			Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		Page<Atendimento> listaAtendimentoPaginada = atendimentoRepository
+				.findRelatorioPorIdPaciente(obj.getIdPaciente(), pageRequest);
+		
+		return listaAtendimentoPaginada;
+	}
 
 	public Page<Atendimento> relatorioAtendimentos(FiltroRelatorioAtendimentoDTO obj, Integer page,
 			Integer linesPerPage, String orderBy, String direction) {
@@ -112,7 +123,7 @@ public class RelatorioService {
 
 		Page<Paciente> listaPacientePaginada = pacienteRepository.findRelatorioPorDatasNomePaciente(
 				dataNascimentoInicial, dataNascimentoFinal, obj.getPacienteNome(), dataCadastroInicial,
-				dataCadastrotoFinal, pageRequest); //, obj.getPacienteCid(), obj.getPacienteCif()
+				dataCadastrotoFinal, pageRequest); // , obj.getPacienteCid(), obj.getPacienteCif()
 		return listaPacientePaginada;
 	}
 

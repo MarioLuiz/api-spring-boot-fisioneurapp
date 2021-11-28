@@ -26,6 +26,12 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
 	
 	@Query("SELECT a FROM Atendimento a "
 			+ "JOIN a.prontuario p "
+			+ "JOIN p.paciente pa "
+			+ "WHERE pa.id = :idPaciente")
+	Page<Atendimento>findRelatorioPorIdPaciente(Long idPaciente, Pageable pageable);
+	
+	@Query("SELECT a FROM Atendimento a "
+			+ "JOIN a.prontuario p "
 			+ "JOIN a.fisioterapeuta f "
 			+ "JOIN p.paciente pa "
 			+ "WHERE pa.nome like :nomePaciente AND "

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.arrudamoreira.fisioneurapp.domain.Fisioterapeuta;
 import com.arrudamoreira.fisioneurapp.domain.Paciente;
+import com.arrudamoreira.fisioneurapp.dto.PacienteLoginDTO;
 import com.arrudamoreira.fisioneurapp.dto.PacienteNewDTO;
 import com.arrudamoreira.fisioneurapp.dto.PacienteUpdateDTO;
 import com.arrudamoreira.fisioneurapp.repositories.PacienteRepository;
@@ -42,6 +43,12 @@ public class PacienteService {
 	
 	public Optional<Paciente> findByCpf(String cpf) {
 		return repo.findByCpf(cpf);
+	}
+	
+	public Paciente findByCpfNumeroProntuario(PacienteLoginDTO obj) {
+		Optional<Paciente> paciente = repo.findByCpf(obj.getCpf());
+		return paciente.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + obj.getCpf() + ", Tipo: " + Paciente.class.getName()));
 	}
 	
 	public Paciente find(Long id) {
