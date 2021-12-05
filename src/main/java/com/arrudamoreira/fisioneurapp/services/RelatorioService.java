@@ -74,6 +74,7 @@ public class RelatorioService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
 		obj.setPacienteNome(colocaPorcentagem(obj.getPacienteNome()));
+		obj.setPacienteCpf(colocaPorcentagem(obj.getPacienteCpf()));
 //		obj.setPacienteCid(colocaPorcentagem(obj.getPacienteCid()));
 //		obj.setPacienteCif(colocaPorcentagem(obj.getPacienteCif()));
 
@@ -123,7 +124,7 @@ public class RelatorioService {
 
 		Page<Paciente> listaPacientePaginada = pacienteRepository.findRelatorioPorDatasNomePaciente(
 				dataNascimentoInicial, dataNascimentoFinal, obj.getPacienteNome(), dataCadastroInicial,
-				dataCadastrotoFinal, pageRequest); // , obj.getPacienteCid(), obj.getPacienteCif()
+				dataCadastrotoFinal, obj.getPacienteCpf(), pageRequest); // , obj.getPacienteCid(), obj.getPacienteCif()
 		return listaPacientePaginada;
 	}
 

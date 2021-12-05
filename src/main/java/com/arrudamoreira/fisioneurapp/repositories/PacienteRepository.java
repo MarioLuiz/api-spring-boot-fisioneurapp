@@ -31,12 +31,13 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
 	@Query("SELECT p FROM Paciente p " 
 			+ "WHERE p.nome like :nomePaciente AND "
+			+ "p.cpf like :cpfPaciente AND "
 			+ "(p.dataNascimento BETWEEN :dataNascimentoInicial AND :dataNascimentoFinal) AND "
 			+ "(p.dataCadastro BETWEEN :dataCadastroInicial AND :dataCadastroFinal)")
 	Page<Paciente> findRelatorioPorDatasNomePaciente(@Param("dataNascimentoInicial") Date dataNascimentoInicial,
 			@Param("dataNascimentoFinal") Date dataNascimentoFinal, @Param("nomePaciente") String nomePaciente,
 			@Param("dataCadastroInicial") Date dataCadastroInicial, @Param("dataCadastroFinal") Date dataCadastroFinal,
-			Pageable pageable);
+			@Param("cpfPaciente") String cpfPaciente,Pageable pageable);
 
 	
 //	  @Query( "SELECT p FROM Paciente p " 

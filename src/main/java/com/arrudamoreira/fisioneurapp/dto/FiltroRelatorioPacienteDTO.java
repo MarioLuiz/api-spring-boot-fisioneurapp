@@ -18,6 +18,8 @@ public class FiltroRelatorioPacienteDTO implements Serializable {
 	private String pacienteCid;
 	
 	private String pacienteCif;
+	
+	private String pacienteCpf;
 
 	public String getPacienteDataNascimentoInicial() {
 		return pacienteDataNascimentoInicial;
@@ -73,5 +75,13 @@ public class FiltroRelatorioPacienteDTO implements Serializable {
 
 	public void setPacienteCif(String pacienteCif) {
 		this.pacienteCif = pacienteCif;
+	}
+
+	public String getPacienteCpf() {
+		return pacienteCpf;
+	}
+
+	public void setPacienteCpf(String pacienteCpf) {
+		this.pacienteCpf = pacienteCpf;
 	}
 }
