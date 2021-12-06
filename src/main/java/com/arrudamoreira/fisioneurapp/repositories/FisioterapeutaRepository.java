@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface FisioterapeutaRepository extends JpaRepository<Fisioterapeuta, Integer> {
     
     @Transactional(readOnly = true)
-    Fisioterapeuta findByEmail(String email);
+    Fisioterapeuta findByEmailIgnoreCase(String email);
 
     public Optional<Fisioterapeuta> findById(Long id);
 

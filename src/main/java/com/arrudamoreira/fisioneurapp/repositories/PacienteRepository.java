@@ -19,11 +19,11 @@ import com.arrudamoreira.fisioneurapp.domain.Paciente;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
-	Page<Paciente> findByNomeLike(String nome, Pageable pageable);
+	Page<Paciente> findByNomeLikeIgnoreCase(String nome, Pageable pageable);
 
-	Page<Paciente> findByNomeLikeAndProntuarioIsNull(String nome, Pageable pageable);
+	Page<Paciente> findByNomeLikeIgnoreCaseAndProntuarioIsNull(String nome, Pageable pageable);
 
-	Page<Paciente> findByNomeLikeAndProntuarioIsNotNull(String nome, Pageable pageable);
+	Page<Paciente> findByNomeLikeIgnoreCaseAndProntuarioIsNotNull(String nome, Pageable pageable);
 
 	Optional<Paciente> findById(Long id);
 	

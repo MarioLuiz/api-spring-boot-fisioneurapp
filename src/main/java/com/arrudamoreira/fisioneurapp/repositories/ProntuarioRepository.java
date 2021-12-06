@@ -19,7 +19,7 @@ public interface ProntuarioRepository extends JpaRepository<Prontuario, Long> {
 	
 	Optional<Prontuario> findById(Long id);
 	
-	Optional<Prontuario> findByNumero(Integer numero);
+	Optional<Prontuario> findByNumeroIgnoreCase(Integer numero);
 	
 	@Query("SELECT p FROM Prontuario p "
 			+ "JOIN p.paciente pa "
