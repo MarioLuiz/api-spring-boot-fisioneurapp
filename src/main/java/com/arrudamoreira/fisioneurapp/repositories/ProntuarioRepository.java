@@ -23,6 +23,6 @@ public interface ProntuarioRepository extends JpaRepository<Prontuario, Long> {
 	
 	@Query("SELECT p FROM Prontuario p "
 			+ "JOIN p.paciente pa "
-			+ "WHERE pa.nome like :nome")
+			+ "WHERE UPPER(pa.nome) like UPPER(:nome)")
 	Page<Prontuario>findByPacienteNomeLike(String nome, Pageable pageable);
 }
