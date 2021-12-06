@@ -36,7 +36,7 @@ public class AuthService {
 	
 	public void sendNewPassword(String email) {
 		
-		Fisioterapeuta fisio = fisioterapeutaRepository.findByEmail(email);
+		Fisioterapeuta fisio = fisioterapeutaRepository.findByEmailIgnoreCase(email);
 		
 		if (fisio == null) {
 			throw new ObjectNotFoundException("Email não encontrado");

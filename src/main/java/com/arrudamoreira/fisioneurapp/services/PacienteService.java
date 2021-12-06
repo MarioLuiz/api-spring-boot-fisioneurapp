@@ -121,19 +121,19 @@ public class PacienteService {
 	public Page<Paciente> findPageCustom(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		nomePesquisado = "%" + nomePesquisado + "%";
-		return repo.findByNomeLike(nomePesquisado,pageRequest);
+		return repo.findByNomeLikeIgnoreCase(nomePesquisado,pageRequest);
 	}
 	
 	public Page<Paciente> findPagePacientesSemProntuario(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		nomePesquisado = "%" + nomePesquisado + "%";
-		return repo.findByNomeLikeAndProntuarioIsNull(nomePesquisado,pageRequest);
+		return repo.findByNomeLikeIgnoreCaseAndProntuarioIsNull(nomePesquisado,pageRequest);
 	}
 	
 	public Page<Paciente> findPagePacientesComProntuario(Integer page, Integer linesPerPage, String orderBy, String direction, String nomePesquisado) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		nomePesquisado = "%" + nomePesquisado + "%";
-		return repo.findByNomeLikeAndProntuarioIsNotNull(nomePesquisado,pageRequest);
+		return repo.findByNomeLikeIgnoreCaseAndProntuarioIsNotNull(nomePesquisado,pageRequest);
 	}
 
 }

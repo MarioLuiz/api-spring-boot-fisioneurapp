@@ -18,7 +18,7 @@ public class UserDatailsServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Fisioterapeuta fisio = repo.findByEmail(email);
+		Fisioterapeuta fisio = repo.findByEmailIgnoreCase(email);
 		
 		if(fisio == null) {
 			throw new UsernameNotFoundException(email);

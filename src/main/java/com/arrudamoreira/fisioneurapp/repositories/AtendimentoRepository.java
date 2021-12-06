@@ -21,7 +21,7 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
 	@Query("SELECT a FROM Atendimento a "
 			+ "JOIN a.prontuario p "
 			+ "JOIN p.paciente pa "
-			+ "WHERE pa.nome like :nome")
+			+ "WHERE UPPER(pa.nome) like UPPER(:nome)")
 	Page<Atendimento>findByPacienteNomeLike(String nome, Pageable pageable);
 	
 	@Query("SELECT a FROM Atendimento a "
@@ -34,8 +34,8 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
 			+ "JOIN a.prontuario p "
 			+ "JOIN a.fisioterapeuta f "
 			+ "JOIN p.paciente pa "
-			+ "WHERE pa.nome like :nomePaciente AND "
-			+ "f.nome like :nomeFisioterapeuta AND "
+			+ "WHERE UPPER(pa.nome) like UPPER(:nomePaciente) AND "
+			+ "UPPER(f.nome) like UPPER(:nomeFisioterapeuta) AND "
 	        + "(a.data BETWEEN :dataInicial AND :dataFinal)")
 	Page<Atendimento>findRelatorioPorDatasNomePacienteNomeFiosioterapeuta(@Param("dataInicial") Date dataInicial, 
 			@Param("dataFinal") Date dataFinal, @Param("nomePaciente") String nomePaciente, @Param("nomeFisioterapeuta") String nomeFisioterapeuta, Pageable pageable);
@@ -47,8 +47,8 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
 			+ "ON A.PRONTUARIO_ID = P.id "
 			+ "INNER JOIN PACIENTE PA "
 			+ "ON P.id = PA.PRONTUARIO_ID "
-			+ "WHERE PA.NOME LIKE :nomePaciente AND "
-			+ "F.NOME LIKE :nomeFisioterapeuta AND "
+			+ "WHERE UPPER(PA.NOME) LIKE UPPER(:nomePaciente) AND "
+			+ "UPPER(F.NOME) LIKE UPPER(:nomeFisioterapeuta) AND "
 			+ "(A.DATA BETWEEN :dataInicial AND :dataFinal)", nativeQuery = true)
 	Page<Atendimento>findRelatorioPorDatasNomePacienteNomeFiosioterapeutaNativo(@Param("dataInicial") Date dataInicial, 
 			@Param("dataFinal") Date dataFinal,@Param("nomePaciente") String nomePaciente, @Param("nomeFisioterapeuta") String nomeFisioterapeuta, Pageable pageable);

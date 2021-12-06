@@ -56,7 +56,7 @@ public class FisioterapeutaService {
 			throw new AuthorizationException("Acesso negado");
 		}
 
-		Optional<Fisioterapeuta> obj = Optional.ofNullable(repo.findByEmail(email));
+		Optional<Fisioterapeuta> obj = Optional.ofNullable(repo.findByEmailIgnoreCase(email));
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! email: " + email + ", Tipo: " + Fisioterapeuta.class.getName()));
 	}
