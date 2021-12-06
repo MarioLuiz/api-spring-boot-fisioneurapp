@@ -30,7 +30,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 	Optional<Paciente> findByCpf(String cpf);
 
 	@Query("SELECT p FROM Paciente p " 
-			+ "WHERE p.nome like :nomePaciente AND "
+			+ "WHERE  UPPER(p.nome) like  UPPER(:nomePaciente) AND "
 			+ "p.cpf like :cpfPaciente AND "
 			+ "(p.dataNascimento BETWEEN :dataNascimentoInicial AND :dataNascimentoFinal) AND "
 			+ "(p.dataCadastro BETWEEN :dataCadastroInicial AND :dataCadastroFinal)")
