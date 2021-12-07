@@ -77,7 +77,7 @@ public class DBService {
 
 		Fisioterapeuta fisio1 = new Fisioterapeuta(null, "Revihery C. Moreira", "04319203725", "revihery@gmail.com",
 				pe.encode("123456Revy"), "1312354F", "1990-04-25");
-		Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "mario@gmail.com",
+		Fisioterapeuta fisio2 = new Fisioterapeuta(null, "Mario Luiz O. Arruda", "03319232188", "marioluiz.arruda@gmail.com",
 				pe.encode("123456Mario"), "1319954F", "1992-02-24");
 		Fisioterapeuta fisio3 = new Fisioterapeuta(null, "Maria Juliana", "04399903725", "maria@gmail.com",
 				pe.encode("123456Maria"), "9312587F", "1993-07-02");
