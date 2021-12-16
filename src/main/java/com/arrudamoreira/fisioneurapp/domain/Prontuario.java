@@ -46,21 +46,21 @@ public class Prontuario implements Serializable {
 	@OneToMany(mappedBy = "prontuario")
 	private List<Atendimento> atendimentos = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "prontuario")
-	private List<Avaliacao> avaliacoes = new ArrayList<>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "prontuario")
+//	private List<Avaliacao> avaliacoes = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "prontuario")
-	private List<EvolucaoClinica> evolucoesClinicas = new ArrayList<>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "prontuario")
+//	private List<EvolucaoClinica> evolucoesClinicas = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "prontuario")
-	private List<Exame> exames = new ArrayList<>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "prontuario")
+//	private List<Exame> exames = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "prontuario")
-	private List<Encaminhamento> encaminhamentos = new ArrayList<>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "prontuario")
+//	private List<Encaminhamento> encaminhamentos = new ArrayList<>();
 
 	public Prontuario() {
 	}
@@ -154,37 +154,37 @@ public class Prontuario implements Serializable {
 		this.atendimentos = atendimentos;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
-		return avaliacoes;
-	}
+//	public List<Avaliacao> getAvaliacoes() {
+//		return avaliacoes;
+//	}
+//
+//	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+//		this.avaliacoes = avaliacoes;
+//	}
 
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-		this.avaliacoes = avaliacoes;
-	}
-
-	public List<EvolucaoClinica> getEvolucoesClinicas() {
-		return evolucoesClinicas;
-	}
-
-	public void setEvolucoesClinicas(List<EvolucaoClinica> evolucoesClinicas) {
-		this.evolucoesClinicas = evolucoesClinicas;
-	}
-
-	public List<Exame> getExames() {
-		return exames;
-	}
-
-	public void setExames(List<Exame> exames) {
-		this.exames = exames;
-	}
-
-	public List<Encaminhamento> getEncaminhamentos() {
-		return encaminhamentos;
-	}
-
-	public void setEncaminhamentos(List<Encaminhamento> encaminhamentos) {
-		this.encaminhamentos = encaminhamentos;
-	}
+//	public List<EvolucaoClinica> getEvolucoesClinicas() {
+//		return evolucoesClinicas;
+//	}
+//
+//	public void setEvolucoesClinicas(List<EvolucaoClinica> evolucoesClinicas) {
+//		this.evolucoesClinicas = evolucoesClinicas;
+//	}
+//
+//	public List<Exame> getExames() {
+//		return exames;
+//	}
+//
+//	public void setExames(List<Exame> exames) {
+//		this.exames = exames;
+//	}
+//
+//	public List<Encaminhamento> getEncaminhamentos() {
+//		return encaminhamentos;
+//	}
+//
+//	public void setEncaminhamentos(List<Encaminhamento> encaminhamentos) {
+//		this.encaminhamentos = encaminhamentos;
+//	}
 
 	@Override
 	public int hashCode() {
